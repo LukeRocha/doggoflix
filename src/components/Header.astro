@@ -1,10 +1,56 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
-import "../styles/global.css";
+import logo from "../assets/logo.png";
+import mobileLogo from "../assets/logo-mobile.png";
+import { Icon } from "astro-icon/components";
 ---
----
-// Welcome to Astro! Everything between these triple-dash code fences
-// is your "component frontmatter". It never runs in the browser.
-console.log('This runs in your terminal, not the browser!');
----
+
+<header class="relative flex items-center justify-between p-4 bg-[#141414]">
+    <img src={logo.src} alt="Logo" class="w-[120px]" />
+  <!-- Menu Desktop -->
+  <nav class="hidden gap-6 text-sm font-medium text-white lg:flex">
+    <a href="#" class="transition hover:text-gray-300">Home</a>
+    <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
+    <a href="#" class="transition hover:text-gray-300">Movies</a>
+    <a href="#" class="transition hover:text-gray-300">My List</a>
+  </nav>
+
+  <!-- User / Search -->
+  <div class="flex items-center gap-3">
+    <Icon
+      name="material-symbols:search-rounded"
+      class="h-5 w-5 cursor-pointer text-white transition hover:text-gray-300"
+    />
+    <button
+      id="user-btn"
+      class="flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-[#222]"
+    >
+      <Icon name="material-symbols:account-circle" class="h-6 w-6 text-white" />
+      <Icon
+        name="material-symbols:arrow-drop-down-rounded"
+        class="h-5 w-5 text-white"
+      />
+    </button>
+  </div>
+
+  <!-- Menu User -->
+  <nav
+    id="user-menu"
+    class="absolute top-[70px] right-4 z-30 hidden w-[180px] flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-white shadow-xl backdrop-blur-md"
+  >
+    <a href="#" class="transition hover:text-gray-300">Home</a>
+    <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
+    <a href="#" class="transition hover:text-gray-300">Movies</a>
+    <a href="#" class="transition hover:text-gray-300">My List</a>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const userBtn = document.getElementById("user-btn");
+    const userMenu = document.getElementById("user-menu");
+
+    userBtn.addEventListener("click", () => {
+    userMenu.classList.toggle("hidden");
+    });
+  });
+</script>

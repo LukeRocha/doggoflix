@@ -1,0 +1,26 @@
+---
+import heroTitle from "../assets/hero-title.png";
+---
+
+<section
+  id="hero"
+  class="relative flex h-[80vh] items-end bg-[url('../assets/hero-bg.png')] bg-cover bg-center"
+>
+  <div class="flex w-full max-w-[700px] flex-col gap-4 px-6 pb-10 md:px-[70px]">
+    <img
+      src={heroTitle.src}
+      alt="Hero Title"
+      class="w-[200px] drop-shadow-lg md:w-[380px]"
+    />
+    <h1 class="text-lg leading-snug font-semibold text-white md:text-2xl">
+      Né cagassogo porque?
+    </h1>
+    <a href="https://docs.astro.build">
+      <button
+        class="rounded-lg bg-[#0b60ab] px-6 py-2 font-medium text-white shadow-md transition hover:bg-[#094c86]"
+      >
+        Watch now
+      </button>
+    </a>
+  </div>
+</section>
