@@ -1,30 +1,32 @@
 ---
 import logo from "../assets/logo.png";
 import mobileLogo from "../assets/logo-mobile.png";
+import profileImg from "../assets/cassogo-profile.jpg";
 import { Icon } from "astro-icon/components";
 ---
 
-<header class="relative flex items-center justify-between p-4 bg-[#141414]">
-    <img src={logo.src} alt="Logo" class="w-[120px]" />
-  <!-- Menu Desktop -->
-  <nav class="hidden gap-6 text-sm font-medium text-white lg:flex">
-    <a href="#" class="transition hover:text-gray-300">Home</a>
-    <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
-    <a href="#" class="transition hover:text-gray-300">Movies</a>
-    <a href="#" class="transition hover:text-gray-300">My List</a>
-  </nav>
+<header class="relative flex items-center justify-between bg-[#141414] p-4">
+    <img src={logo.src} alt="Logo" class="logo w-[120px]" />
+    <img src={mobileLogo.src} alt="Logo" class="mobile-logo w-8" />
+    <!-- Menu Desktop -->
+    <nav class="hidden gap-6 text-sm text-xl text-white md:flex lg:flex">
+      <a href="#" class="transition hover:text-gray-300">Home</a>
+      <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
+      <a href="#" class="transition hover:text-gray-300">Movies</a>
+      <a href="#" class="transition hover:text-gray-300">My List</a>
+    </nav>
 
   <!-- User / Search -->
   <div class="flex items-center gap-3">
-    <Icon
-      name="material-symbols:search-rounded"
-      class="h-5 w-5 cursor-pointer text-white transition hover:text-gray-300"
-    />
+   <Icon name="material-symbols:search-rounded" width="24" height="24"  style="color: #fff" />
+    <Icon name="material-symbols:notifications-active" width="24" height="24"  style="color: #fff" />
     <button
       id="user-btn"
       class="flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-[#222]"
     >
-      <Icon name="material-symbols:account-circle" class="h-6 w-6 text-white" />
+      <span>
+        <img src={profileImg.src} alt="" class="w-8">
+      </span>
       <Icon
         name="material-symbols:arrow-drop-down-rounded"
         class="h-5 w-5 text-white"
@@ -50,7 +52,22 @@ import { Icon } from "astro-icon/components";
     const userMenu = document.getElementById("user-menu");
 
     userBtn.addEventListener("click", () => {
-    userMenu.classList.toggle("hidden");
+      userMenu.classList.toggle("hidden");
     });
   });
 </script>
+<style>
+  @media (max-width: 400px) {
+    .logo {
+      display: none;
+    }
+    .mobile-logo {
+      display: block;
+    }
+  }
+  @media (min-width: 400px) {
+    .mobile-logo {
+      display: none;
+    }
+  }
+</style>
