@@ -1,83 +1,120 @@
 ---
 import logo from "../assets/logo.png";
-import mobileLogo from "../assets/logo-mobile.png";
 import profileImg from "../assets/cassogo-profile.jpg";
 import { Icon } from "astro-icon/components";
 ---
 
 <header class="relative flex items-center justify-between bg-[#141414] p-4">
-  <img src={logo.src} alt="Logo" class="logo w-[120px]" />
-  <img src={mobileLogo.src} alt="Logo" class="mobile-logo w-8" />
-  <!-- Menu Desktop -->
-  <nav class="hidden gap-6 text-sm text-xl text-white md:flex lg:flex">
-    <a href="#" class="transition hover:text-gray-300">Home</a>
-    <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
-    <a href="#" class="transition hover:text-gray-300">Movies</a>
-    <a href="#" class="transition hover:text-gray-300">My List</a>
+  <img src={logo.src} alt="Logo da aplicação" class="w-[120px]" />
+
+  <nav
+    id="desktop-menu"
+    class="hidden items-center gap-6 text-lg text-gray-300 md:flex"
+  >
+    <a href="#" class="transition hover:text-white">Home</a>
+    <a href="#" class="transition hover:text-white">Tv Shows</a>
+    <a href="#" class="transition hover:text-white">Movies</a>
+    <a href="#" class="transition hover:text-white">My List</a>
+    <Icon
+      name="material-symbols:arrow-drop-down-rounded"
+      class="h-5 w-10 text-white"
+    />
   </nav>
 
-  <!-- User / Search -->
-  <div class="flex items-center gap-3">
+  <div class="relative flex items-center gap-3">
     <Icon
       name="material-symbols:search-rounded"
       width="24"
       height="24"
-      style="color: #fff"
+      aria-label="Search"
+      class="text-white transition hover:text-gray-300"
     />
     <Icon
       name="material-symbols:notifications-active"
       width="24"
       height="24"
-      style="color: #fff"
+      aria-label="Notifications"
+      class="text-white transition hover:text-gray-300"
     />
+
     <button
       id="user-btn"
-      class="flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-[#222]"
+      aria-haspopup="true"
+      aria-expanded="false"
+      class="relative flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-[#222] focus:ring-2 focus:ring-white focus:outline-none"
     >
-      <span>
-        <img src={profileImg.src} alt="" class="w-8" />
-      </span>
+      <img
+        src={profileImg.src}
+        alt="Perfil do usuário"
+        class="h-8 w-8 rounded-full"
+      />
       <Icon
         name="material-symbols:arrow-drop-down-rounded"
         class="h-5 w-5 text-white"
       />
     </button>
-  </div>
 
-  <!-- Menu User -->
-  <nav
-    id="user-menu"
-    class="absolute top-[70px] right-4 z-30 hidden w-[180px] flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-white shadow-xl backdrop-blur-md"
-  >
-    <a href="#" class="transition hover:text-gray-300">Home</a>
-    <a href="#" class="transition hover:text-gray-300">Tv Shows</a>
-    <a href="#" class="transition hover:text-gray-300">Movies</a>
-    <a href="#" class="transition hover:text-gray-300">My List</a>
-  </nav>
+    <nav
+      id="user-menu"
+      class="pointer-events-none absolute top-[70px] right-4 z-30 hidden w-[180px] origin-top-right scale-95 transform flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-gray-300 opacity-0 shadow-xl backdrop-blur-md transition"
+    >
+      <a href="#" class="transition hover:text-white">Profile</a>
+      <a href="#" class="transition hover:text-white">Settings</a>
+      <a href="#" class="transition hover:text-white">Billing</a>
+      <a href="#" class="transition hover:text-white">Sign Out</a>
+    </nav>
+  </div>
 </header>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const userBtn = document.getElementById("user-btn");
-    const userMenu = document.getElementById("user-menu");
+<div class="relative bg-[#141414] md:hidden">
+  <nav
+    class="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth px-4 py-3 text-lg font-medium text-gray-300"
+  >
+    <a href="#" class="shrink-0 transition hover:text-white">Home</a>
+    <a href="#" class="shrink-0 transition hover:text-white">Tv Shows</a>
+    <a href="#" class="shrink-0 transition hover:text-white">Movies</a>
+    <a href="#" class="shrink-0 transition hover:text-white">My List</a>
+    <a href="#" class="shrink-0 transition hover:text-white">New & Popular</a>
+    <a href="#" class="shrink-0 transition hover:text-white">Anime</a>
+    <a href="#" class="shrink-0 transition hover:text-white">Documentaries</a>
+  </nav>
+  <div
+    class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"
+  >
+  </div>
+</div>
 
-    userBtn.addEventListener("click", () => {
-      userMenu.classList.toggle("hidden");
-    });
-  });
-</script>
 <style>
-  @media (max-width: 400px) {
-    .logo {
-      display: none;
-    }
-    .mobile-logo {
-      display: block;
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  @media (max-width: 900px) {
+    #desktop-menu {
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+      justify-content: center;
     }
   }
-  @media (min-width: 400px) {
-    .mobile-logo {
-      display: none;
-    }
+
+  #user-menu {
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease;
+    transform-origin: top-right;
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  #user-menu.opacity-100 {
+    transform: scale(1);
+    opacity: 1;
   }
 </style>
