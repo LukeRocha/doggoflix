@@ -5,21 +5,37 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header class="relative flex items-center justify-between bg-[#141414] p-4">
-  <img src={logo.src} alt="Logo da aplicação" class="w-[120px]" />
-
-  <nav
-    id="desktop-menu"
-    class="hidden items-center gap-6 text-lg text-gray-300 md:flex"
-  >
-    <a href="#" class="transition hover:text-white">Home</a>
-    <a href="#" class="transition hover:text-white">Tv Shows</a>
-    <a href="#" class="transition hover:text-white">Movies</a>
-    <a href="#" class="transition hover:text-white">My List</a>
-    <Icon
-      name="material-symbols:arrow-drop-down-rounded"
-      class="h-5 w-10 text-white"
+    <img
+      src={logo.src}
+      alt="Logo da aplicação"
+      class="w-[120px] cursor-pointer"
     />
-  </nav>
+
+    <nav
+      id="desktop-menu"
+      class="hidden items-center gap-6 text-lg text-gray-300 md:flex"
+    >
+      <a href="#" class="cursor-pointer transition hover:text-white">Home</a>
+      <a href="#" class="cursor-pointer transition hover:text-white">Tv Shows</a
+      >
+      <a href="#" class="cursor-pointer transition hover:text-white">Movies</a>
+      <a href="#" class="cursor-pointer transition hover:text-white">My List</a>
+      <a href="#" class="cursor-pointer transition hover:text-white">My List</a>
+      <Icon
+  name="material-symbols:arrow-drop-down-rounded"
+  class="h-5 w-5 cursor-pointer text-white"
+  id="categories-btn"
+/>
+
+<nav id="categories-dropdown" class="hidden top-full mt-2 left-0 z-20 w-[200px] flex-col rounded-xl bg-[#1f1f1f] p-2 text-gray-300 shadow-lg">
+  <a href="#" class="p-2 hover:text-white">New & Popular</a>
+  <a href="#" class="p-2 hover:text-white">Anime</a>
+  <a href="#" class="p-2 hover:text-white">Documentaries</a>
+  <a href="#" class="p-2 hover:text-white">Horror</a>
+  <a href="#" class="p-2 hover:text-white">Comedy</a>
+</nav>
+
+    </nav>
 
   <div class="relative flex items-center gap-3">
     <Icon
@@ -27,27 +43,23 @@ import { Icon } from "astro-icon/components";
       width="24"
       height="24"
       aria-label="Search"
-      class="text-white transition hover:text-gray-300"
+      class="cursor-pointer text-white transition hover:text-gray-300"
     />
     <Icon
       name="material-symbols:notifications-active"
       width="24"
       height="24"
       aria-label="Notifications"
-      class="text-white transition hover:text-gray-300"
+      class="cursor-pointer text-white transition hover:text-gray-300"
     />
 
     <button
       id="user-btn"
       aria-haspopup="true"
       aria-expanded="false"
-      class="relative flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-[#222] focus:ring-2 focus:ring-white focus:outline-none"
+      class="relative flex items-center gap-1 px-2 py-1 transition focus:outline-none cursor-pointer"
     >
-      <img
-        src={profileImg.src}
-        alt="Perfil do usuário"
-        class="h-8 w-8 rounded-full"
-      />
+      <img src={profileImg.src} alt="Perfil do usuário" class="h-[100%] w-8" />
       <Icon
         name="material-symbols:arrow-drop-down-rounded"
         class="h-5 w-5 text-white"
@@ -56,7 +68,7 @@ import { Icon } from "astro-icon/components";
 
     <nav
       id="user-menu"
-      class="pointer-events-none absolute top-[70px] right-4 z-30 hidden w-[180px] origin-top-right scale-95 transform flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-gray-300 opacity-0 shadow-xl backdrop-blur-md transition"
+      class="absolute top-[70px] right-4 z-30 hidden w-[180px] origin-top-right scale-95 transform flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-gray-300 opacity-0 shadow-xl backdrop-blur-md transition"
     >
       <a href="#" class="transition hover:text-white">Profile</a>
       <a href="#" class="transition hover:text-white">Settings</a>
@@ -68,25 +80,43 @@ import { Icon } from "astro-icon/components";
 
 <div class="relative bg-[#141414] md:hidden">
   <nav
-    class="scrollbar-hide flex gap-5 overflow-x-auto scroll-smooth px-4 py-3 text-lg font-medium text-gray-300"
+    class="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth px-4 py-3 text-lg font-medium text-gray-300"
   >
-    <a href="#" class="shrink-0 transition hover:text-white">Home</a>
-    <a href="#" class="shrink-0 transition hover:text-white">Tv Shows</a>
-    <a href="#" class="shrink-0 transition hover:text-white">Movies</a>
-    <a href="#" class="shrink-0 transition hover:text-white">My List</a>
-    <a href="#" class="shrink-0 transition hover:text-white">New & Popular</a>
-    <a href="#" class="shrink-0 transition hover:text-white">Anime</a>
-    <a href="#" class="shrink-0 transition hover:text-white">Documentaries</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Home</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Tv Shows</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Movies</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">My List</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white"
+      >New & Popular</a
+    >
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Anime</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white"
+      >Documentaries</a
+    >
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Horror</a>
+    <a href="#" class="shrink-0 p-1 transition hover:text-white">Comedy</a>
   </nav>
   <div
-    class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"
+    class="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"
   >
   </div>
   <div
-    class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"
+    class="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"
   >
   </div>
 </div>
+<script>
+  const btn = document.getElementById("categories-btn");
+  const dropdown = document.getElementById("categories-dropdown");
+
+  if (btn && dropdown) {
+    btn.addEventListener("click", () => {
+      dropdown.classList.toggle("hidden");
+      dropdown.classList.toggle("flex");
+      dropdown.classList.toggle("flex-col");
+    });
+  }
+</script>
 
 <style>
   .scrollbar-hide::-webkit-scrollbar {
@@ -113,6 +143,7 @@ import { Icon } from "astro-icon/components";
     transform: scale(0.95);
     opacity: 0;
   }
+
   #user-menu.opacity-100 {
     transform: scale(1);
     opacity: 1;
