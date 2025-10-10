@@ -3,149 +3,162 @@ import logo from "../assets/logo.png";
 import profileImg from "../assets/cassogo-profile.jpg";
 import { Icon } from "astro-icon/components";
 ---
+<header class="relative bg-[#141414]  z-[50]">
+  <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
+    <div class="flex items-center gap-6">
+      <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
 
-<header class="relative flex items-center justify-between bg-[#141414] p-4">
-    <img
-      src={logo.src}
-      alt="Logo da aplicação"
-      class="w-[120px] cursor-pointer"
-    />
+      <nav id="desktop-menu" class="hidden md:flex items-center gap-6 text-gray-300 text-base">
+        <a href="#" class="cursor-pointer transition hover:text-white">Home</a>
+        <a href="#" class="cursor-pointer transition hover:text-white">Tv Shows</a>
+        <a href="#" class="cursor-pointer transition hover:text-white">Movies</a>
+        <a href="#" class="cursor-pointer transition hover:text-white">My List</a>
 
-    <nav
-      id="desktop-menu"
-      class="hidden items-center gap-6 text-lg text-gray-300 md:flex"
-    >
-      <a href="#" class="cursor-pointer transition hover:text-white">Home</a>
-      <a href="#" class="cursor-pointer transition hover:text-white">Tv Shows</a
-      >
-      <a href="#" class="cursor-pointer transition hover:text-white">Movies</a>
-      <a href="#" class="cursor-pointer transition hover:text-white">My List</a>
-      <a href="#" class="cursor-pointer transition hover:text-white">My List</a>
-      <Icon
-  name="material-symbols:arrow-drop-down-rounded"
-  class="h-5 w-5 cursor-pointer text-white"
-  id="categories-btn"
-/>
+        <div class="relative">
+          <button
+            id="categories-btn"
+            aria-haspopup="true"
+            aria-expanded="false"
+            class="inline-flex items-center gap-2 rounded px-2 py-1 text-gray-300 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+            type="button"
+          >
+            Categories
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
 
-<nav id="categories-dropdown" class="hidden top-full mt-2 left-0 z-20 w-[200px] flex-col rounded-xl bg-[#1f1f1f] p-2 text-gray-300 shadow-lg">
-  <a href="#" class="p-2 hover:text-white">New & Popular</a>
-  <a href="#" class="p-2 hover:text-white">Anime</a>
-  <a href="#" class="p-2 hover:text-white">Documentaries</a>
-  <a href="#" class="p-2 hover:text-white">Horror</a>
-  <a href="#" class="p-2 hover:text-white">Comedy</a>
-</nav>
+          <div id="categories-dropdown"
+               class="hidden absolute left-0 top-full mt-2 w-[220px] origin-top-left rounded-xl bg-[#1f1f1f] p-2 text-gray-300 shadow-xl ring-1 ring-black/40"
+               role="menu"
+               aria-label="Categories menu">
+            <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">New & Popular</a>
+            <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Anime</a>
+            <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Documentaries</a>
+            <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Horror</a>
+            <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Comedy</a>
+          </div>
+        </div>
+      </nav>
+    </div>
 
+    <div class="flex items-center gap-4">
+      <button class="hidden md:inline-flex items-center gap-3 rounded-full p-2 text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="Search">
+        <Icon name="material-symbols:search-rounded" width="20" height="20" />
+      </button>
+
+      <button class="hidden md:inline-flex items-center gap-3 rounded-full p-2 text-white hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400" aria-label="Notifications">
+        <Icon name="material-symbols:notifications-active" width="20" height="20" />
+      </button>
+
+      <div class="relative">
+        <button
+          id="user-btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          class="relative flex items-center gap-2 rounded px-2 py-1 text-gray-300 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          type="button"
+        >
+          <img src={profileImg.src} alt="Perfil" class="h-8 w-8 rounded-full object-cover" />
+          <svg class="h-4 w-4 text-gray-300" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div id="user-menu"
+             class="hidden absolute right-0 top-full mt-2 w-[200px] origin-top-right rounded-xl bg-[#1f1f1f]/95 p-2 text-gray-300 shadow-xl ring-1 ring-black/40"
+             role="menu"
+             aria-label="User menu">
+          <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Profile</a>
+          <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Settings</a>
+          <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Billing</a>
+          <a role="menuitem" href="#" class="block rounded px-3 py-2 hover:bg-white/5">Sign out</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative bg-[#141414] md:hidden">
+    <nav class="scrollbar-hide flex gap-4 overflow-x-auto px-4 py-3 text-lg font-medium text-gray-300">
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Home</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Tv Shows</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Movies</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">My List</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">New & Popular</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Anime</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Documentaries</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Horror</a>
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Comedy</a>
     </nav>
 
-  <div class="relative flex items-center gap-3">
-    <Icon
-      name="material-symbols:search-rounded"
-      width="24"
-      height="24"
-      aria-label="Search"
-      class="cursor-pointer text-white transition hover:text-gray-300"
-    />
-    <Icon
-      name="material-symbols:notifications-active"
-      width="24"
-      height="24"
-      aria-label="Notifications"
-      class="cursor-pointer text-white transition hover:text-gray-300"
-    />
-
-    <button
-      id="user-btn"
-      aria-haspopup="true"
-      aria-expanded="false"
-      class="relative flex items-center gap-1 px-2 py-1 transition focus:outline-none cursor-pointer"
-    >
-      <img src={profileImg.src} alt="Perfil do usuário" class="h-[100%] w-8" />
-      <Icon
-        name="material-symbols:arrow-drop-down-rounded"
-        class="h-5 w-5 text-white"
-      />
-    </button>
-
-    <nav
-      id="user-menu"
-      class="absolute top-[70px] right-4 z-30 hidden w-[180px] origin-top-right scale-95 transform flex-col space-y-2 rounded-xl bg-[#1f1f1f]/95 p-4 text-gray-300 opacity-0 shadow-xl backdrop-blur-md transition"
-    >
-      <a href="#" class="transition hover:text-white">Profile</a>
-      <a href="#" class="transition hover:text-white">Settings</a>
-      <a href="#" class="transition hover:text-white">Billing</a>
-      <a href="#" class="transition hover:text-white">Sign Out</a>
-    </nav>
+    <div class="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent pointer-events-none"></div>
+    <div class="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent pointer-events-none"></div>
   </div>
-</header>
 
-<div class="relative bg-[#141414] md:hidden">
-  <nav
-    class="scrollbar-hide flex gap-4 overflow-x-auto scroll-smooth px-4 py-3 text-lg font-medium text-gray-300"
-  >
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Home</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Tv Shows</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Movies</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">My List</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white"
-      >New & Popular</a
-    >
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Anime</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white"
-      >Documentaries</a
-    >
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Horror</a>
-    <a href="#" class="shrink-0 p-1 transition hover:text-white">Comedy</a>
-  </nav>
-  <div
-    class="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"
-  >
-  </div>
-  <div
-    class="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"
-  >
-  </div>
-</div>
-<script>
-  const btn = document.getElementById("categories-btn");
-  const dropdown = document.getElementById("categories-dropdown");
+  <script type="module">
+    function wireDropdown(buttonId, menuId) {
+      const btn = document.getElementById(buttonId);
+      const menu = document.getElementById(menuId);
+      if (!btn || !menu) return;
 
-  if (btn && dropdown) {
-    btn.addEventListener("click", () => {
-      dropdown.classList.toggle("hidden");
-      dropdown.classList.toggle("flex");
-      dropdown.classList.toggle("flex-col");
-    });
-  }
-</script>
+      const menuItems = Array.from(menu.querySelectorAll('[role="menuitem"]'));
 
-<style>
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+      function open() {
+        menu.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        if (menuItems.length) menuItems[0].focus();
+        document.addEventListener('click', onDocClick);
+        document.addEventListener('keydown', onKeydown);
+      }
 
-  @media (max-width: 900px) {
-    #desktop-menu {
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-      justify-content: center;
+      function close() {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.focus();
+        document.removeEventListener('click', onDocClick);
+        document.removeEventListener('keydown', onKeydown);
+      }
+
+      function toggle() {
+        if (menu.classList.contains('hidden')) open(); else close();
+      }
+
+      function onDocClick(e) {
+        if (!menu.contains(e.target) && !btn.contains(e.target)) close();
+      }
+
+      function onKeydown(e) {
+        if (e.key === 'Escape') { close(); return; }
+        // basic keyboard nav: ArrowDown / ArrowUp
+        if (['ArrowDown', 'ArrowUp'].includes(e.key)) {
+          e.preventDefault();
+          if (!menuItems.length) return;
+          const idx = menuItems.indexOf(document.activeElement);
+          let next = 0;
+          if (e.key === 'ArrowDown') next = idx < menuItems.length - 1 ? idx + 1 : 0;
+          if (e.key === 'ArrowUp') next = idx > 0 ? idx - 1 : menuItems.length - 1;
+          menuItems[next].focus();
+        }
+      }
+
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation();
+        toggle();
+      });
+
+      window.addEventListener('resize', () => {
+        if (!menu.classList.contains('hidden')) close();
+      });
     }
-  }
 
-  #user-menu {
-    transition:
-      transform 0.2s ease,
-      opacity 0.2s ease;
-    transform-origin: top-right;
-    transform: scale(0.95);
-    opacity: 0;
-  }
+    document.addEventListener('DOMContentLoaded', () => {
+      wireDropdown('categories-btn', 'categories-dropdown');
+      wireDropdown('user-btn', 'user-menu');
+    });
+  </script>
 
-  #user-menu.opacity-100 {
-    transform: scale(1);
-    opacity: 1;
-  }
-</style>
+  <style>
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</header>

@@ -1,70 +1,75 @@
 ---
 import heroTitle from "../assets/hero-title.png";
+import heroBg from "../assets/hero-bg.png";
 ---
-
 <section
   id="hero"
-  class="relative h-[80vh] w-full bg-[url('../assets/hero-bg.png')] bg-cover bg-center text-white"
+  role="region"
+  aria-label="Destaque principal"
+  class="relative w-full bg-cover bg-center text-white"
+  style={`background-image: url(${heroBg.src});`}
 >
-  <!-- Overlay escuro para legibilidade -->
-  <div class="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/60 to-transparent"></div>
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/85 via-black/55 to-transparent"></div>
 
-  <!-- Conteúdo -->
-  <div
-    class="relative z-10 flex h-full w-full max-w-[1100px] items-end px-6 pb-12 md:pb-16 lg:pb-20"
-  >
-    <div
-      class="flex flex-col justify-end w-full max-w-[720px] md:pl-[70px] lg:pl-[90px]"
-    >
-      <!-- Logo / título visual -->
-      <img
-        src={heroTitle.src}
-        alt="Hero Title"
-        class="w-[200px] md:w-[360px] drop-shadow-xl"
-      />
+  <div class="relative z-10 mx-auto flex h-[75vh] min-h-[480px] w-full max-w-[1800px] items-end px-4 md:px-6 pb-8 md:pb-12">
+    <div class="flex w-full max-w-[760px] flex-col justify-end md:pl-[70px] lg:pl-[140px]">
+      <div class="mb-2 flex items-center gap-3">
+        <span class="inline-flex items-center rounded px-2 py-0.5 text-xs font-semibold text-white bg-[#0b60ab]">DOGGO</span>
+        <span class="text-xs text-gray-300">• 5 in TV Shows Today</span>
+      </div>
 
-      <!-- Descrição curta -->
-      <p
-        class="mt-4 text-base leading-snug text-gray-200 md:text-lg lg:text-xl"
-      >
-        A breathtaking thriller series following a brilliant detective uncovering
-        secrets that should have stayed buried.
+      <div class="mb-4">
+        <img src={heroTitle.src} alt="Título do destaque" class="w-[220px] md:w-[360px] lg:w-[420px] drop-shadow-[0_12px_30px_rgba(0,0,0,0.7)]" />
+      </div>
+
+      <p class="max-w-[56ch] text-sm md:text-base lg:text-lg leading-relaxed text-gray-300">
+        A breathtaking thriller series following a brilliant detective uncovering secrets that should have stayed buried.
       </p>
 
-      <!-- Botões -->
       <div class="mt-6 flex flex-wrap items-center gap-3">
-        <a href="#">
-          <button
-            class="flex items-center gap-2 rounded-md bg-white px-6 py-2 font-semibold text-black transition hover:bg-gray-200"
-          >
-            ▶ Play
-          </button>
-        </a>
+        <button
+          class="inline-flex items-center gap-3 rounded-md bg-[#0b60ab] px-5 py-2.5 font-semibold text-white shadow-md transition hover:bg-[#094c86] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#0b60ab]/60"
+          aria-label="Play"
+        >
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/10">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 5v14l11-7-11-7z" fill="#ffffff"/>
+            </svg>
+          </span>
+          <span class="text-sm md:text-base">Play</span>
+        </button>
 
-        <a href="#">
-          <button
-            class="flex items-center gap-2 rounded-md bg-[rgba(109,109,110,0.7)] px-6 py-2 font-semibold text-white transition hover:bg-[rgba(109,109,110,0.4)]"
-          >
-            ⓘ More Info
-          </button>
-        </a>
+        <button
+          class="inline-flex items-center gap-3 rounded-md bg-black/40 px-4 py-2.5 font-semibold text-white ring-1 ring-white/10 transition hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30"
+          aria-label="More info"
+        >
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-black/30 ring-1 ring-white/10">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="#fff" stroke-opacity="0.9" stroke-width="1.2"/>
+              <rect x="11.3" y="10" width="1.4" height="5.5" rx="0.4" fill="#fff"/>
+              <circle cx="12" cy="7.4" r="0.8" fill="#fff"/>
+            </svg>
+          </span>
+          <span class="text-sm md:text-base">More info</span>
+        </button>
+
+        <!-- Tertiary: text link -->
+        <a href="#" class="ml-1 self-center text-sm text-gray-300 hover:text-white underline underline-offset-4">Watch trailer</a>
       </div>
     </div>
   </div>
+
+  <style>
+    #hero { height: 68vh; }
+    @media (min-width: 640px) { #hero { height: 75vh; } }
+    @media (min-width: 1024px) { #hero { height: 88vh; } }
+
+    @media (max-width: 420px) {
+      #hero img[alt="Título do destaque"] { width: 160px !important; }
+      #hero .max-w-[760px] { padding-left: 14px !important; padding-right: 14px !important; }
+      #hero .mt-6 { gap: 8px; }
+      #hero .relative.z-10 > div { align-items: center; text-align: center; padding-left: 0 !important; }
+    }
+    button:focus-visible { outline: none; }
+  </style>
 </section>
-
-<style>
-  /* Responsividade refinada */
-  @media (max-width: 768px) {
-    #hero {
-      background-position: center top;
-      height: 70vh;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    #hero {
-      height: 90vh;
-    }
-  }
-</style>
