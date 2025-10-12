@@ -129,7 +129,7 @@ import { Icon } from "astro-icon/components";
       </nav>
     </div>
 
-    <div class="flex items-center md>gap-3">
+    <div class="md>gap-3 flex items-center">
       <button
         class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
         aria-label="Search"
@@ -150,7 +150,7 @@ import { Icon } from "astro-icon/components";
           name="material-symbols:notifications-active"
           width="20"
           height="20"
-          class="cursor-pointer hidden md:flex"
+          class="hidden cursor-pointer md:flex"
         />
       </button>
 
@@ -313,7 +313,9 @@ import { Icon } from "astro-icon/components";
 
       const boundDocClick = (element) => onDocClick(element, button, menu);
 
-      button.addEventListener("click", (element) => toggleMenu(element, button, menu));
+      button.addEventListener("click", (element) =>
+        toggleMenu(element, button, menu),
+      );
       document.addEventListener("click", boundDocClick);
 
       window.addEventListener("resize", () => {
