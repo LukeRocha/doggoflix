@@ -1,0 +1,15 @@
+---
+// src/components/BackgroundWrapper.astro
+import bgImage from "../assets/hero-bg.png";
+---
+
+<div
+  class="relative min-h-screen w-full bg-cover bg-center"
+  style={`background-image: url(${bgImage.src});`}
+>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/80"
+  >
+  </div>
+  <slot />
+</div>
