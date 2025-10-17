@@ -1,10 +1,30 @@
+
 ---
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import BackgroundWrapper from "../components/BackgroundWrapper.astro";
 import Layout from "../layouts/Layout.astro";
 import Carousel from "../components/Carousel.astro";
+import Footer from "../components/Footer.astro"
 import "../styles/global.css";
+
+
+// (opcional) importe imagens estáticas para ter otimização
+import img1 from "../assets/movies/movie-1.jpg";
+import img2 from "../assets/movies/movie-2.png";
+import img3 from "../assets/movies/movie-3.png";
+import img4 from "../assets/movies/movie-4.png";
+import img5 from "../assets/movies/movie-5.png";
+
+
+const actionItems = [
+  { id: "m1", title: "Edge Runner", img: img1, alt: "Edge Runner poster", href: "/movie/edge-runner", rating: 8.7 },
+  { id: "m2", title: "Edge Runner", img: img2, alt: "Edge Runner poster", href: "/movie/edge-runner", rating: 8.7 },
+  { id: "m3", title: "Edge Runner", img: img3, alt: "Edge Runner poster", href: "/movie/edge-runner", rating: 8.7 },
+  { id: "m4", title: "Edge Runner", img: img4, alt: "Edge Runner poster", href: "/movie/edge-runner", rating: 8.7 },
+  { id: "m5", title: "Edge Runner", img: img5, alt: "Edge Runner poster", href: "/movie/edge-runner", rating: 8.7 },
+
+];
 ---
 
 <Layout class="bg-[#141414] font-sans">
@@ -12,8 +32,12 @@ import "../styles/global.css";
     <Header />
     <Hero />
   </BackgroundWrapper>
-  <Carousel />
-  <Carousel />
-  <Carousel />
-  <Carousel />
+
+  <Carousel title="Action" category="action" items={actionItems} />
+  <Carousel title="Favourites" category="action" items={actionItems} />
+  <Carousel title="Top movies" category="action" items={actionItems} />
+  <Carousel title="Series" category="action" items={actionItems} />
+  <Carousel title="Based on your choices" category="action" items={actionItems} />
+  <Carousel title="Anime" category="action" items={actionItems} />
+  <Footer />  
 </Layout>
