@@ -1,5 +1,5 @@
 ---
-import CarouselItem from './CarouselItem.astro';
+import CarouselItem from "./CarouselItem.astro";
 
 interface Item {
   id: string;
@@ -14,168 +14,134 @@ interface Props {
   category?: string;
   items: Item[];
 }
-
 const { title, category, items = [] } = Astro.props as Props;
 
-// para IDs únicos caso você reuse o componente mais de uma vez
-const uid = `carousel-${crypto.randomUUID()}`;
+const repeatedItems = Array.from({ length: 3 }, () => items).flat();
 ---
 
-<section class="relative flex flex-col gap-2 bg-[#141414]">
+<section class="relative flex flex-col gap-2 bg-[#141414]" data-carousel-root data-loop="true">
   <h2 class="px-6 pt-6 text-[28px] font-extrabold tracking-[-0.02em] text-white md:text-[32px]">
     {title}
   </h2>
 
-  <!-- Wrapper com overflow escondido -->
   <div class="relative px-6 pb-8">
-    <!-- Gradientes nas bordas (efeito Netflix) -->
-    <div class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"></div>
-    <div class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"></div>
+    <div class="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"></div>
 
-    <!-- Trilho -->
-    <div id={uid} class="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth" role="list" aria-label={`Carrossel ${title}`}>
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
-      {
-        items.map((item) => (
-          <div role="listitem" class="snap-start">
-            <CarouselItem {...item} />
-          </div>
-        ))
-      }
+    <div
+      data-carousel-track
+      class="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth"
+      role="list"
+      aria-label={`Carrossel ${title}`}
+      tabindex="0"
+    >
+      {repeatedItems.map((item, idx) => (
+        <div role="listitem" class="snap-start">
+          <CarouselItem {...item} />
+        </div>
+      ))}
     </div>
 
-    <!-- Botões -->
     <button
       type="button"
       data-dir="left"
       aria-label="Anterior"
-      class="group absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:ring-2 focus:ring-white/40 focus:outline-none disabled:opacity-40"
+      class="group absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 z-10"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
-        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
     <button
       type="button"
       data-dir="right"
       aria-label="Próximo"
-      class="group absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:ring-2 focus:ring-white/40 focus:outline-none disabled:opacity-40"
+      class="group absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 z-10"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
-        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </button>
   </div>
 </section>
 
-<!-- Script do cliente -->
-<script>
-  const track = document.getElementById({ uid });
-  const btnLeft = track.parentElement.querySelector('[data-dir="left"]');
-  const btnRight = track.parentElement.querySelector('[data-dir="right"]');
+<script is:inline>
+  document.querySelectorAll('[data-carousel-root][data-loop="true"]').forEach((root) => {
+    const track = root.querySelector('[data-carousel-track]');
+    const btnLeft = root.querySelector('[data-dir="left"]');
+    const btnRight = root.querySelector('[data-dir="right"]');
+    if (!track || !btnLeft || !btnRight) return;
 
-  function getStep() {
-    // Largura aproximada de um card + gap
-    const first = track.querySelector(':scope > *');
-    if (!first) return 300;
-    const rect = first.getBoundingClientRect();
-    const styles = window.getComputedStyle(track);
-    const gap = parseFloat(styles.columnGap || styles.gap || '12');
-    return rect.width + gap;
-  }
+    track.classList.add('js-ready');
+    function snapOff() {
+      track.classList.add('snap-off', 'no-smooth');
+      void track.offsetHeight;
+    }
+    function snapOn() {
+      requestAnimationFrame(() => {
+        track.classList.remove('snap-off', 'no-smooth');
+      });
+    }
 
-  function updateButtons() {
-    // Desabilita botões nas extremidades
-    const maxScroll = track.scrollWidth - track.clientWidth - 2; // margem
-    btnLeft.disabled = track.scrollLeft <= 1;
-    btnRight.disabled = track.scrollLeft >= maxScroll;
-  }
+    const sets = 3; // A | A | A
+    function getSetWidth() {
+      return track.scrollWidth / sets;
+    }
+    function getStep() {
+      const first = track.querySelector(':scope > *');
+      if (!first) return 320;
+      const rect = first.getBoundingClientRect();
+      const styles = window.getComputedStyle(track);
+      const gap = parseFloat(styles.gap || styles.columnGap || '12');
+      return rect.width + gap;
+    }
 
-  function scrollDir(dir) {
-    const step = getStep();
-    track.scrollBy({
-      left: dir === 'right' ? step : -step,
-      behavior: 'smooth',
+    function goToMiddleSet() {
+      const setW = getSetWidth();
+      snapOff();
+      track.scrollLeft = setW;
+      snapOn();
+    }
+
+    function keepInfinite() {
+      const setW = getSetWidth();
+      const l = track.scrollLeft;
+      if (l < setW * 0.5) {
+        snapOff();
+        track.scrollLeft = l + setW; 
+        snapOn();
+      } else if (l >= setW * 1.5) {
+        snapOff();
+        track.scrollLeft = l - setW;
+        snapOn();
+      }
+    }
+
+    function scrollDir(dir) {
+      track.scrollBy({ left: dir === 'right' ? getStep() : -getStep(), behavior: 'smooth' });
+    }
+
+    btnLeft.addEventListener('click', () => scrollDir('left'));
+    btnRight.addEventListener('click', () => scrollDir('right'));
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); scrollDir('right'); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollDir('left'); }
     });
-  }
 
-  btnLeft.addEventListener('click', () => scrollDir('left'));
-  btnRight.addEventListener('click', () => scrollDir('right'));
+    track.addEventListener('scroll', keepInfinite, { passive: true });
+    window.addEventListener('resize', () => {
+      clearTimeout(track._loopResizeT);
+      track._loopResizeT = setTimeout(goToMiddleSet, 80);
+    });
 
-  // teclado (setas)
-  track.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      scrollDir('right');
-    }
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      scrollDir('left');
-    }
+    queueMicrotask(goToMiddleSet);
   });
-  track.setAttribute('tabindex', '0');
-
-  // atualiza estado
-  track.addEventListener('scroll', updateButtons, { passive: true });
-  window.addEventListener('resize', updateButtons);
-  queueMicrotask(updateButtons);
 </script>
 
 <style>
-  /* esconde a scrollbar sem quebrar a rolagem */
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .snap-off { scroll-snap-type: none !important; }
+  .no-smooth { scroll-behavior: auto !important; }
 </style>

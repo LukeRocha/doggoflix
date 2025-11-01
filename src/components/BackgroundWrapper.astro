@@ -1,9 +1,26 @@
 ---
 // src/components/BackgroundWrapper.astro
-import bgImage from '../assets/hero-bg.png';
+// Importe seus 5 banners (ajuste extensão se não for .png)
+import hero1 from "../assets/banners/hero-bg-1.png";
+import hero2 from "../assets/banners/hero-bg-2.png";
+import hero3 from "../assets/banners/hero-bg-3.png";
+import hero4 from "../assets/banners/hero-bg-4.png";
+import hero5 from "../assets/banners/hero-bg-5.png";
+
+// sorteio por request
+const banners = [hero1, hero2, hero3, hero4, hero5];
+const bgImage = banners[Math.floor(Math.random() * banners.length)];
 ---
 
-<div class="relative w-full bg-cover bg-center" style={`background-image: url(${bgImage.src});`}>
-  <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/60"></div>
-  <slot />
+<div
+  class="relative w-full overflow-hidden bg-cover bg-center"
+  style={`background-image: url(${bgImage.src});`}
+>
+  <div class="pointer-events-none absolute inset-0 bg-black/20"></div>
+
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-black/60 to-[#141414]"></div>
+
+  <div class="relative z-[2]">
+    <slot />
+  </div>
 </div>

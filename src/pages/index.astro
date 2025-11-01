@@ -1,59 +1,38 @@
 ---
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import BackgroundWrapper from '../components/BackgroundWrapper.astro';
-import Layout from '../layouts/Layout.astro';
-import Carousel from '../components/Carousel.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import BackgroundWrapper from "../components/BackgroundWrapper.astro";
+import Layout from "../layouts/Layout.astro";
+import Carousel from "../components/Carousel.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
-import img1 from '../assets/movies/movie-1.jpg';
-import img2 from '../assets/movies/movie-2.png';
-import img3 from '../assets/movies/movie-3.png';
-import img4 from '../assets/movies/movie-4.png';
-import img5 from '../assets/movies/movie-5.png';
+import img1 from "../assets/movies/movie-1.png";
+import img2 from "../assets/movies/movie-2.png";
+import img3 from "../assets/movies/movie-3.png";
+import img4 from "../assets/movies/movie-4.png";
+import img5 from "../assets/movies/movie-5.png";
+import img6 from "../assets/movies/movie-6.png";
+import img7 from "../assets/movies/movie-7.png";
+import img8 from "../assets/movies/movie-8.png"; 
+import img9 from "../assets/movies/movie-9.png";
+import img10 from "../assets/movies/movie-10.png";
+import img11 from "../assets/movies/movie-11.png";
+import img12 from "../assets/movies/movie-12.png";
 
 const actionItems = [
-  {
-    id: 'm1',
-    title: 'Edge Runner',
-    img: img1,
-    alt: 'Edge Runner poster',
-    href: '/movie/edge-runner',
-    rating: 8.7,
-  },
-  {
-    id: 'm2',
-    title: 'Edge Runner',
-    img: img2,
-    alt: 'Edge Runner poster',
-    href: '/movie/edge-runner',
-    rating: 8.7,
-  },
-  {
-    id: 'm3',
-    title: 'Edge Runner',
-    img: img3,
-    alt: 'Edge Runner poster',
-    href: '/movie/edge-runner',
-    rating: 8.7,
-  },
-  {
-    id: 'm4',
-    title: 'Edge Runner',
-    img: img4,
-    alt: 'Edge Runner poster',
-    href: '/movie/edge-runner',
-    rating: 8.7,
-  },
-  {
-    id: 'm5',
-    title: 'Edge Runner',
-    img: img5,
-    alt: 'Edge Runner poster',
-    href: '/movie/edge-runner',
-    rating: 8.7,
-  },
+  { id: "m1",  title: "Edge Runner", img: img1,  alt: "Edge Runner poster", href: "/movies/edge-runner", rating: 8.7 },
+  { id: "m2",  title: "Neon Drift",  img: img2,  alt: "Neon Drift poster",  href: "/movies/neon-drift",  rating: 8.5 },
+  { id: "m3",  title: "Sky Sparks",  img: img3,  alt: "Sky Sparks poster",  href: "/movies/sky-sparks",  rating: 8.2 },
+  { id: "m4",  title: "Dark Alley",  img: img4,  alt: "Dark Alley poster",  href: "/movies/dark-alley",  rating: 7.9 },
+  { id: "m5",  title: "Quantum 9",   img: img5,  alt: "Quantum 9 poster",   href: "/movies/quantum-9",   rating: 8.1 },
+  { id: "m6",  title: "Cold Steel",  img: img6,  alt: "Cold Steel poster",  href: "/movies/cold-steel",  rating: 7.8 },
+  { id: "m7",  title: "Red Orbit",   img: img7,  alt: "Red Orbit poster",   href: "/movies/red-orbit",   rating: 8.0 },
+  { id: "m8",  title: "Solar Rush",  img: img8,  alt: "Solar Rush poster",  href: "/movies/solar-rush",  rating: 7.7 },
+  { id: "m9",  title: "Night Run",   img: img9,  alt: "Night Run poster",   href: "/movies/night-run",   rating: 7.9 },
+  { id: "m10", title: "Apex Zero",   img: img10, alt: "Apex Zero poster",   href: "/movies/apex-zero",   rating: 8.3 },
+  { id: "m11", title: "Vector 11",   img: img11, alt: "Vector 11 poster",   href: "/movies/vector-11",  rating: 7.6 },
+  { id: "m12", title: "Last Beacon", img: img12, alt: "Last Beacon poster", href: "/movies/last-beacon", rating: 8.4 },
 ];
 ---
 
@@ -63,11 +42,8 @@ const actionItems = [
     <Hero />
   </BackgroundWrapper>
 
-  <Carousel title="Action" category="action" items={actionItems} />
-  <Carousel title="Favourites" category="action" items={actionItems} />
-  <Carousel title="Top movies" category="action" items={actionItems} />
-  <Carousel title="Series" category="action" items={actionItems} />
-  <Carousel title="Based on your choices" category="action" items={actionItems} />
-  <Carousel title="Anime" category="action" items={actionItems} />
+  <Carousel title="Top Movies" category="top" items={actionItems} />
+  <Carousel title="Favourites" category="fav" items={actionItems} />
+
   <Footer />
 </Layout>
