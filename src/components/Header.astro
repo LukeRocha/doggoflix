@@ -20,7 +20,7 @@ import { Icon } from "astro-icon/components";
 
           <li class="relative">
             <button
-              id="categories-btn"
+              id="categories-button"
               aria-haspopup="menu"
               aria-expanded="false"
               aria-controls="categories-menu"
@@ -87,14 +87,14 @@ import { Icon } from "astro-icon/components";
 
       <div class="relative">
         <button
-          id="user-btn"
+          id="user-button"
           aria-haspopup="menu"
           aria-expanded="false"
           aria-controls="user-menu"
           class="relative flex items-center gap-2 rounded px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           type="button"
         >
-          <img src={profileImg.src} alt="Profile" class="h-10 w-10 object-cover cursor-pointer" />
+          <img src={profileImg.src} alt="Profile" class="h-8 w-8 object-cover cursor-pointer " />
         </button>
 
         <ul
@@ -151,24 +151,24 @@ import { Icon } from "astro-icon/components";
 
 <script type="module">
   const pairs = [
-    ["categories-btn", "categories-menu"],
-    ["user-btn", "user-menu"],
+    ["categories-button", "categories-menu"],
+    ["user-button", "user-menu"],
   ];
 
   const buttons = [];
   const menus = [];
 
-  for (const [btnId, menuId] of pairs) {
-    const btn = document.getElementById(btnId);
+  for (const [buttonId, menuId] of pairs) {
+    const button = document.getElementById(buttonId);
     const menu = document.getElementById(menuId);
-    if (!btn || !menu) continue;
+    if (!button || !menu) continue;
 
-    buttons.push(btn);
+    buttons.push(button);
     menus.push(menu);
     menu.classList.add("hidden");
-    btn.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-expanded", "false");
 
-    btn.addEventListener("click", (e) => {
+    button.addEventListener("click", (e) => {
       e.stopPropagation();
       const isOpen = !menu.classList.contains("hidden");
 
@@ -177,7 +177,7 @@ import { Icon } from "astro-icon/components";
 
       if (!isOpen) {
         menu.classList.remove("hidden");
-        btn.setAttribute("aria-expanded", "true");
+        button.setAttribute("aria-expanded", "true");
       }
     });
   }
