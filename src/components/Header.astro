@@ -5,364 +5,229 @@ import { Icon } from "astro-icon/components";
 ---
 
 <header class="relative z-[50] text-gray-100">
-  <div
-    class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3"
-  >
+  <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
+    <!-- Esquerda: Logo + Navegação Desktop -->
     <div class="flex items-center gap-6 lg:gap-[120px]">
-      <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
+      <a href="/" aria-label="DOGGO Home">
+        <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
+      </a>
 
-      <nav
-        id="desktop-menu"
-        class="hidden items-center gap-6 text-base text-gray-100 md:flex"
-      >
-        <a href="#" class="cursor-pointer transition hover:text-white">Home</a>
-        <a href="#" class="cursor-pointer transition hover:text-white"
-          >Tv Shows</a
-        >
-        <a href="#" class="cursor-pointer transition hover:text-white">Movies</a
-        >
-        <a href="#" class="cursor-pointer transition hover:text-white"
-          >My List</a
-        >
+      <!-- NAV principal (desktop) -->
+      <nav id="desktop-menu" class="hidden md:flex items-center text-base text-gray-100">
+        <ul class="flex items-center gap-6">
+          <li><a href="#" class="transition hover:text-white">Home</a></li>
+          <li><a href="#" class="transition hover:text-white">Tv Shows</a></li>
+          <li><a href="#" class="transition hover:text-white">Movies</a></li>
+          <li><a href="#" class="transition hover:text-white">My List</a></li>
 
-        <div class="relative inline-block">
-          <button
-            id="categories-btn"
-            aria-haspopup="true"
-            aria-expanded="false"
-            class="cursor-pointer inline-flex items-center gap-2 rounded px-2 py-1 text-gray-100 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-            type="button"
-          >
-            Categories
-            <svg
-              class="h-4 w-4"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
+          <!-- Dropdown: Categories -->
+          <li class="relative">
+            <button
+              id="categories-btn"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="categories-menu"
+              type="button"
+              class="inline-flex items-center gap-2 px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
             >
-              <path
-                d="M6 9l6 6 6-6"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"></path>
-            </svg>
-          </button>
+              Categories
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
 
-          <div
-            id="categories-dropdown"
-            class="absolute top-full left-0 mt-2 hidden w-[240px] origin-top-left scale-95 transform rounded-xl bg-[#1f1f1f]/80 p-2 text-gray-100 opacity-0 shadow-xl ring-1 ring-black/40 backdrop-blur-sm transition duration-200 ease-out will-change-transform"
-            role="menu"
-            aria-label="Categories menu"
-          >
-            <a
-              role="menuitem"
-              href="#"
-              class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
+            <!-- UL dentro do NAV: submenu -->
+            <ul
+              id="categories-menu"
+              role="menu"
+              class="absolute left-0 top-full mt-2 hidden w-[240px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
             >
-              <Icon
-                name="material-symbols:whatshot"
-                width="16"
-                height="16"
-                class="flex-shrink-0"
-              />
-              <span>New &amp; Popular</span>
-            </a>
-
-            <a
-              role="menuitem"
-              href="#"
-              class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-            >
-              <Icon
-                name="material-symbols:theater-comedy"
-                width="16"
-                height="16"
-                class="flex-shrink-0"
-              />
-              <span>Anime</span>
-            </a>
-
-            <a
-              role="menuitem"
-              href="#"
-              class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-            >
-              <Icon
-                name="material-symbols:movie"
-                width="16"
-                height="16"
-                class="flex-shrink-0"
-              />
-              <span>Documentaries</span>
-            </a>
-
-            <a
-              role="menuitem"
-              href="#"
-              class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-            >
-              <Icon
-                name="material-symbols:report"
-                width="16"
-                height="16"
-                class="flex-shrink-0"
-              />
-              <span>Horror</span>
-            </a>
-
-            <a
-              role="menuitem"
-              href="#"
-              class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-            >
-              <Icon
-                name="material-symbols:sentiment-very-satisfied"
-                width="16"
-                height="16"
-                class="flex-shrink-0"
-              />
-              <span>Comedy</span>
-            </a>
-          </div>
-        </div>
+              <li role="none">
+                <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+                  <Icon name="material-symbols:whatshot" width="16" height="16" class="flex-shrink-0" />
+                  <span>New &amp; Popular</span>
+                </a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+                  <Icon name="material-symbols:theater-comedy" width="16" height="16" class="flex-shrink-0" />
+                  <span>Comedy</span>
+                </a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+                  <Icon name="material-symbols:skull" width="16" height="16" class="flex-shrink-0" />
+                  <span>Horror</span>
+                </a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+                  <Icon name="material-symbols:movie" width="16" height="16" class="flex-shrink-0" />
+                  <span>Documentaries</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </nav>
     </div>
 
-    <div class="md>gap-3 flex items-center">
+    <!-- Direita: Ações -->
+    <div class="flex items-center gap-1 md:gap-3">
       <button
-        class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+        class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
         aria-label="Search"
+        type="button"
       >
-        <Icon
-          name="material-symbols:search-rounded"
-          width="20"
-          height="20"
-          class="cursor-pointer"
-        />
+        <Icon name="material-symbols:search-rounded" width="20" height="20" />
       </button>
 
       <button
-        class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+        class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
         aria-label="Notifications"
+        type="button"
       >
-        <Icon
-          name="material-symbols:notifications-active"
-          width="20"
-          height="20"
-          class="hidden cursor-pointer md:flex"
-        />
+        <Icon name="material-symbols:notifications-active" width="20" height="20" class="flex cursor-pointer" />
       </button>
 
-      <div class="relative inline-block">
+      <!-- Dropdown: User -->
+      <div class="relative">
         <button
           id="user-btn"
-          aria-haspopup="true"
+          aria-haspopup="menu"
           aria-expanded="false"
-          class="relative flex items-center gap-2 rounded px-2 py-1 text-gray-100 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+          aria-controls="user-menu"
+          class="relative flex items-center gap-2 rounded px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
           type="button"
         >
-          <img
-            src={profileImg.src}
-            alt="Perfil"
-            class="h-10 w-10 cursor-pointer object-cover"
-          />
+          <img src={profileImg.src} alt="Profile" class="h-10 w-10 object-cover cursor-pointer" />
         </button>
 
-        <div
+        <ul
           id="user-menu"
-          class="absolute top-full right-0 z-[45] mt-2 hidden w-[220px] origin-top-right scale-95 transform rounded-xl bg-[#1f1f1f]/80 p-2 text-gray-100 opacity-0 shadow-xl ring-1 ring-black/40 backdrop-blur-sm transition duration-200 ease-out will-change-transform"
           role="menu"
-          aria-label="User menu"
+          class="absolute right-0 top-full z-[45] mt-2 hidden w-[220px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
         >
-          <a
-            role="menuitem"
-            href="#"
-            class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-          >
-            <Icon
-              name="material-symbols:person"
-              width="16"
-              height="16"
-              class="flex-shrink-0"
-            />
-            <span>Profile</span>
-          </a>
-
-          <a
-            role="menuitem"
-            href="#"
-            class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-          >
-            <Icon
-              name="material-symbols:settings"
-              width="16"
-              height="16"
-              class="flex-shrink-0"
-            />
-            <span>Settings</span>
-          </a>
-
-          <a
-            role="menuitem"
-            href="#"
-            class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-          >
-            <Icon
-              name="material-symbols:credit-card"
-              width="16"
-              height="16"
-              class="flex-shrink-0"
-            />
-            <span>Billing</span>
-          </a>
-
-          <a
-            role="menuitem"
-            href="#"
-            class="flex cursor-pointer items-center gap-3 rounded px-3 py-2 hover:bg-white/5"
-          >
-            <Icon
-              name="material-symbols:logout"
-              width="16"
-              height="16"
-              class="flex-shrink-0"
-            />
-            <span>Sign out</span>
-          </a>
-        </div>
+          <li role="none">
+            <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+              <Icon name="material-symbols:person" width="16" height="16" class="flex-shrink-0" />
+              <span>Profile</span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+              <Icon name="material-symbols:settings" width="16" height="16" class="flex-shrink-0" />
+              <span>Settings</span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+              <Icon name="material-symbols:credit-card" width="16" height="16" class="flex-shrink-0" />
+              <span>Billing</span>
+            </a>
+          </li>
+          <li role="none">
+            <a role="menuitem" href="#" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+              <Icon name="material-symbols:logout" width="16" height="16" class="flex-shrink-0" />
+              <span>Sign out</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
+  <!-- Nav Mobile (carrossel) -->
   <div class="relative md:hidden">
-    <nav
-      class="scrollbar-hide flex gap-4 overflow-x-auto px-4 py-3 text-lg font-medium text-gray-100"
-    >
+    <nav aria-label="Primary mobile" class="scrollbar-hide flex gap-4 overflow-x-auto px-4 py-3 text-md font-medium text-gray-100">
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Home</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Tv Shows</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Movies</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">My List</a>
-      <a href="#" class="shrink-0 p-1 transition hover:text-white"
-        >New & Popular</a
-      >
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">New &amp; Popular</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Anime</a>
-      <a href="#" class="shrink-0 p-1 transition hover:text-white"
-        >Documentaries</a
-      >
+      <a href="#" class="shrink-0 p-1 transition hover:text-white">Documentaries</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Horror</a>
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Comedy</a>
     </nav>
 
-    <div
-      class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414]/20 to-transparent"
-    >
-    </div>
-    <div
-      class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414]/20 to-transparent"
-    >
-    </div>
+    <div class="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#141414]/20 to-transparent"></div>
+    <div class="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#141414]/20 to-transparent"></div>
   </div>
-
-  <script type="module">
-    function openMenu(button, menu) {
-      menu.classList.remove("hidden");
-      menu.classList.remove("opacity-0", "scale-95");
-      menu.classList.add("opacity-100", "scale-100");
-      button.setAttribute("aria-expanded", "true");
-    }
-
-    function closeMenu(btn, menu) {
-      menu.classList.remove("opacity-100", "scale-100");
-      menu.classList.add("opacity-0", "scale-95");
-      btn.setAttribute("aria-expanded", "false");
-      setTimeout(() => {
-        if (menu.classList.contains("opacity-0")) {
-          menu.classList.add("hidden");
-        }
-      }, 210);
-    }
-
-    function toggleMenu(element, button, menu) {
-      element.stopPropagation();
-      if (
-        menu.classList.contains("hidden") ||
-        menu.classList.contains("opacity-0")
-      ) {
-        openMenu(button, menu);
-      } else {
-        closeMenu(button, menu);
-      }
-    }
-
-    function onDocClick(element, button, menu) {
-      if (!menu.contains(element.target) && !button.contains(element.target))
-        closeMenu(button, menu);
-    }
-
-    function setupDropdown(buttonId, menuId) {
-      const button = document.getElementById(buttonId);
-      const menu = document.getElementById(menuId);
-      if (!button || !menu) return;
-
-      if (!menu.classList.contains("hidden")) {
-        menu.classList.add("hidden", "opacity-0", "scale-95");
-      } else {
-        menu.classList.add("opacity-0", "scale-95");
-      }
-
-      const boundDocClick = (element) => onDocClick(element, button, menu);
-
-      button.addEventListener("click", (element) =>
-        toggleMenu(element, button, menu),
-      );
-      document.addEventListener("click", boundDocClick);
-
-      window.addEventListener("resize", () => {
-        if (!menu.classList.contains("hidden")) closeMenu(button, menu);
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      setupDropdown("categories-btn", "categories-dropdown");
-      setupDropdown("user-btn", "user-menu");
-    });
-  </script>
-
-  <style>
-    header a {
-      letter-spacing: 0.2px;
-    }
-    header nav a {
-      padding-left: 6px;
-      padding-right: 6px;
-    }
-
-    #categories-dropdown,
-    #user-menu {
-      box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-    }
-
-    #categories-dropdown,
-    #user-menu {
-      transition-property: opacity, transform;
-      transition-duration: 200ms;
-      transition-timing-function: ease-out;
-    }
-
-    #categories-dropdown,
-    #user-menu {
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-      background-color: rgba(31, 31, 31, 0.6);
-    }
-
-    .scrollbar-hide::-webkit-scrollbar {
-      display: none;
-    }
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
 </header>
+
+<!-- JS mínimo: abrir/fechar 2 menus + clique-fora -->
+<script type="module">
+  const pairs = [
+    ["categories-btn", "categories-menu"],
+    ["user-btn", "user-menu"],
+  ];
+
+  const buttons = [];
+  const menus = [];
+
+  for (const [btnId, menuId] of pairs) {
+    const btn = document.getElementById(btnId);
+    const menu = document.getElementById(menuId);
+    if (!btn || !menu) continue;
+
+    buttons.push(btn);
+    menus.push(menu);
+    menu.classList.add("hidden");
+    btn.setAttribute("aria-expanded", "false");
+
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !menu.classList.contains("hidden");
+
+      // fecha todos
+      menus.forEach((m) => m.classList.add("hidden"));
+      buttons.forEach((b) => b.setAttribute("aria-expanded", "false"));
+
+      // abre se estava fechado
+      if (!isOpen) {
+        menu.classList.remove("hidden");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  }
+
+  // clique-fora fecha tudo
+  document.addEventListener("click", (e) => {
+    const insideMenu = menus.some((m) => m.contains(e.target));
+    const onButton = buttons.some((b) => b.contains(e.target));
+    if (!insideMenu && !onButton) {
+      menus.forEach((m) => m.classList.add("hidden"));
+      buttons.forEach((b) => b.setAttribute("aria-expanded", "false"));
+    }
+  });
+</script>
+
+<style>
+  /* Globais leves que fazem sentido fora do Tailwind utilitário */
+  header a { letter-spacing: 0.2px; }
+  header nav a { padding-left: 6px; padding-right: 6px; }
+
+  /* Aparência consistente entre todos os dropdowns */
+  #categories-menu,
+  #user-menu {
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  /* Opcional: se quiser animação, descomente este bloco
+  [data-has-anim="1"] .menu {
+    transition: opacity 200ms ease-out, transform 200ms ease-out;
+    opacity: 0; transform: scale(0.95);
+  }
+  [data-has-anim="1"] .menu[data-open] {
+    opacity: 1; transform: scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    [data-has-anim="1"] .menu { transition: none; }
+  }
+  */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
