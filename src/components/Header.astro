@@ -6,13 +6,11 @@ import { Icon } from "astro-icon/components";
 
 <header class="relative z-[50] text-gray-100">
   <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
-    <!-- Esquerda: Logo + Navegação Desktop -->
     <div class="flex items-center gap-6 lg:gap-[120px]">
       <a href="/" aria-label="DOGGO Home">
         <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
       </a>
 
-      <!-- NAV principal (desktop) -->
       <nav id="desktop-menu" class="hidden md:flex items-center text-base text-gray-100">
         <ul class="flex items-center gap-6">
           <li><a href="#" class="transition hover:text-white">Home</a></li>
@@ -20,7 +18,6 @@ import { Icon } from "astro-icon/components";
           <li><a href="#" class="transition hover:text-white">Movies</a></li>
           <li><a href="#" class="transition hover:text-white">My List</a></li>
 
-          <!-- Dropdown: Categories -->
           <li class="relative">
             <button
               id="categories-btn"
@@ -36,7 +33,6 @@ import { Icon } from "astro-icon/components";
               </svg>
             </button>
 
-            <!-- UL dentro do NAV: submenu -->
             <ul
               id="categories-menu"
               role="menu"
@@ -72,7 +68,6 @@ import { Icon } from "astro-icon/components";
       </nav>
     </div>
 
-    <!-- Direita: Ações -->
     <div class="flex items-center gap-1 md:gap-3">
       <button
         class="inline-flex items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 cursor-pointer"
@@ -90,7 +85,6 @@ import { Icon } from "astro-icon/components";
         <Icon name="material-symbols:notifications-active" width="20" height="20" class="flex cursor-pointer" />
       </button>
 
-      <!-- Dropdown: User -->
       <div class="relative">
         <button
           id="user-btn"
@@ -137,7 +131,6 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 
-  <!-- Nav Mobile (carrossel) -->
   <div class="relative md:hidden">
     <nav aria-label="Primary mobile" class="scrollbar-hide flex gap-4 overflow-x-auto px-4 py-3 text-md font-medium text-gray-100">
       <a href="#" class="shrink-0 p-1 transition hover:text-white">Home</a>
@@ -156,7 +149,6 @@ import { Icon } from "astro-icon/components";
   </div>
 </header>
 
-<!-- JS mínimo: abrir/fechar 2 menus + clique-fora -->
 <script type="module">
   const pairs = [
     ["categories-btn", "categories-menu"],
@@ -180,11 +172,9 @@ import { Icon } from "astro-icon/components";
       e.stopPropagation();
       const isOpen = !menu.classList.contains("hidden");
 
-      // fecha todos
       menus.forEach((m) => m.classList.add("hidden"));
       buttons.forEach((b) => b.setAttribute("aria-expanded", "false"));
 
-      // abre se estava fechado
       if (!isOpen) {
         menu.classList.remove("hidden");
         btn.setAttribute("aria-expanded", "true");
@@ -192,7 +182,6 @@ import { Icon } from "astro-icon/components";
     });
   }
 
-  // clique-fora fecha tudo
   document.addEventListener("click", (e) => {
     const insideMenu = menus.some((m) => m.contains(e.target));
     const onButton = buttons.some((b) => b.contains(e.target));
@@ -204,11 +193,9 @@ import { Icon } from "astro-icon/components";
 </script>
 
 <style>
-  /* Globais leves que fazem sentido fora do Tailwind utilitário */
   header a { letter-spacing: 0.2px; }
   header nav a { padding-left: 6px; padding-right: 6px; }
 
-  /* Aparência consistente entre todos os dropdowns */
   #categories-menu,
   #user-menu {
     box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
@@ -216,18 +203,6 @@ import { Icon } from "astro-icon/components";
     backdrop-filter: blur(6px);
   }
 
-  /* Opcional: se quiser animação, descomente este bloco
-  [data-has-anim="1"] .menu {
-    transition: opacity 200ms ease-out, transform 200ms ease-out;
-    opacity: 0; transform: scale(0.95);
-  }
-  [data-has-anim="1"] .menu[data-open] {
-    opacity: 1; transform: scale(1);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    [data-has-anim="1"] .menu { transition: none; }
-  }
-  */
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
