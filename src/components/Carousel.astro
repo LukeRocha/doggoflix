@@ -1,5 +1,5 @@
 ---
-import CarouselItem from "./CarouselItem.astro";
+import CarouselItem from './CarouselItem.astro';
 
 interface Item {
   id: string;
@@ -29,49 +29,67 @@ const uid = `carousel-${crypto.randomUUID()}`;
   <!-- Wrapper com overflow escondido -->
   <div class="relative px-6 pb-8">
     <!-- Gradientes nas bordas (efeito Netflix) -->
-    <div class="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"></div>
-    <div class="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"></div>
+    <div class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414] to-transparent"></div>
+    <div class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414] to-transparent"></div>
 
     <!-- Trilho -->
-    <div
-      id={uid}
-      class="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth"
-      role="list"
-      aria-label={`Carrossel ${title}`}
-    >
-      {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))} {items.map((item) => (
-        <div role="listitem" class="snap-start">
-          <CarouselItem {...item} />
-        </div>
-      ))}
+    <div id={uid} class="no-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth" role="list" aria-label={`Carrossel ${title}`}>
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
+      {
+        items.map((item) => (
+          <div role="listitem" class="snap-start">
+            <CarouselItem {...item} />
+          </div>
+        ))
+      }
     </div>
 
     <!-- Botões -->
@@ -79,20 +97,20 @@ const uid = `carousel-${crypto.randomUUID()}`;
       type="button"
       data-dir="left"
       aria-label="Anterior"
-      class="group absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 disabled:opacity-40"
+      class="group absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:ring-2 focus:ring-white/40 focus:outline-none disabled:opacity-40"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
-        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </button>
     <button
       type="button"
       data-dir="right"
       aria-label="Próximo"
-      class="group absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 disabled:opacity-40"
+      class="group absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-white/10 p-2 backdrop-blur transition hover:bg-white/20 focus:ring-2 focus:ring-white/40 focus:outline-none disabled:opacity-40"
     >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
-        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </button>
   </div>
@@ -100,8 +118,8 @@ const uid = `carousel-${crypto.randomUUID()}`;
 
 <!-- Script do cliente -->
 <script>
-  const track = document.getElementById({uid});
-  const btnLeft  = track.parentElement.querySelector('[data-dir="left"]');
+  const track = document.getElementById({ uid });
+  const btnLeft = track.parentElement.querySelector('[data-dir="left"]');
   const btnRight = track.parentElement.querySelector('[data-dir="right"]');
 
   function getStep() {
@@ -117,13 +135,16 @@ const uid = `carousel-${crypto.randomUUID()}`;
   function updateButtons() {
     // Desabilita botões nas extremidades
     const maxScroll = track.scrollWidth - track.clientWidth - 2; // margem
-    btnLeft.disabled  = track.scrollLeft <= 1;
+    btnLeft.disabled = track.scrollLeft <= 1;
     btnRight.disabled = track.scrollLeft >= maxScroll;
   }
 
   function scrollDir(dir) {
     const step = getStep();
-    track.scrollBy({ left: dir === 'right' ? step : -step, behavior: 'smooth' });
+    track.scrollBy({
+      left: dir === 'right' ? step : -step,
+      behavior: 'smooth',
+    });
   }
 
   btnLeft.addEventListener('click', () => scrollDir('left'));
@@ -131,8 +152,14 @@ const uid = `carousel-${crypto.randomUUID()}`;
 
   // teclado (setas)
   track.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); scrollDir('right'); }
-    if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollDir('left'); }
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      scrollDir('right');
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      scrollDir('left');
+    }
   });
   track.setAttribute('tabindex', '0');
 
@@ -144,6 +171,11 @@ const uid = `carousel-${crypto.randomUUID()}`;
 
 <style>
   /* esconde a scrollbar sem quebrar a rolagem */
-  .no-scrollbar::-webkit-scrollbar{ display:none; }
-  .no-scrollbar{ -ms-overflow-style:none; scrollbar-width:none; }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 </style>

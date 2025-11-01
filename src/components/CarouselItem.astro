@@ -9,10 +9,10 @@ interface Props {
 }
 const { title, img, alt, href, rating } = Astro.props as Props;
 
-const src = typeof img === "string" ? img : img.src;
+const src = typeof img === 'string' ? img : img.src;
 ---
 
-<a href={href ?? "#"} class="group inline-block min-w-[160px]">
+<a href={href ?? '#'} class="group inline-block min-w-[160px]">
   <div class="aspect-[2/3] w-[160px] overflow-hidden rounded-xl bg-black/30">
     <img src={src} alt={alt} loading="lazy" class="h-full w-full object-cover transition group-hover:scale-105" />
   </div>
