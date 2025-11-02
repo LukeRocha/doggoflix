@@ -1,8 +1,10 @@
 ---
-import bgImage from '../assets/banners/hero-bg-1.png';
+const { imgSrc } = Astro.props as { imgSrc: string };
 ---
 
-<div class="relative w-full bg-cover bg-center" style={`background-image: url(${bgImage.src});`}>
+<div class="relative min-h-[60svh] w-full bg-cover bg-center" style={`background-image:url('${imgSrc}');`}>
   <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/60"></div>
-  <slot />
+  <div class="relative z-10">
+    <slot />
+  </div>
 </div>

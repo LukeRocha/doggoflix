@@ -1,24 +1,32 @@
+---
+interface MovieData {
+  title: string;
+  sinopsis: string;
+}
+
+const { title, sinopsis } = Astro.props as MovieData;
+---
+
 <section id="hero" class="relative h-[64svh] w-full text-white sm:h-[72svh] md:h-[80dvh] lg:h-[80dvh]">
-  <!-- bg overlay (top->up) -->
   <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent md:from-black/80 md:via-black/55"></div>
 
   <div class="relative z-10 mx-auto flex h-full w-full max-w-[1800px] items-end px-4 pb-6 sm:pb-8 md:px-6 md:pb-12">
     <div class="flex w-full max-w-[760px] flex-col items-start justify-end">
       <div class="mb-2 flex items-center gap-3 text-gray-300">
         <span class="inline-flex items-center rounded bg-[#0b60ab] px-2 py-0.5 text-xs font-semibold text-white">GASSO</span>
-        <span class="text-xs">• 1 in TV Shows Today</span>
+        <span class="text-xs">• Trending in TV Shows Today</span>
       </div>
 
       <div class="mb-3 sm:mb-4">
         <h1
           class="text-[36px] leading-tight font-extrabold tracking-[-0.02em] text-white drop-shadow-[0_12px_30px_rgba(0,0,0,0.7)] sm:text-[32px] md:text-[40px] lg:text-[56px]"
         >
-          Will que mode
+          {title}
         </h1>
-        <p class="mt-2 max-w-[48ch] text-sm text-gray-200/90">cy papai cy papai, né gasso né?</p>
+        <p class="max-w-[56ch] text-sm leading-relaxed text-gray-300 md:text-base lg:text-lg">{sinopsis}</p>
       </div>
+      <p class="mt-2 max-w-[48ch] text-sm text-gray-200/90">cy papai cy papai, né gasso né?</p>
 
-      <p class="max-w-[56ch] text-sm leading-relaxed text-gray-300 md:text-base lg:text-lg">Né gassogo porque? vai da bezz na baguida, si sero zi patas.</p>
 
       <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4">
         <button

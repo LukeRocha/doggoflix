@@ -137,6 +137,11 @@ export const favouriteMovies = [
   allMovies[10],
   allMovies[2],
   allMovies[14],
+  allMovies[13],
+  allMovies[15],
+  allMovies[16],
+  allMovies[11],
+  allMovies[20],
 ];
 
 export const rankedMovies = [
@@ -150,6 +155,10 @@ export const rankedMovies = [
   allMovies[16],
   allMovies[11],
   allMovies[20],
+  allMovies[4],
+  allMovies[10],
+  allMovies[2],
+  allMovies[14],
 ];
 
 export const trendingMovies = [
@@ -166,13 +175,25 @@ export const trendingMovies = [
 ];
 
 export const movieCovers = [
-  { id: 'b1', title: 'Hero 1', img: cover1, alt: 'Hero banner 1' },
-  { id: 'b2', title: 'Hero 2', img: cover2, alt: 'Hero banner 2' },
-  { id: 'b3', title: 'Hero 3', img: cover3, alt: 'Hero banner 3' },
-  { id: 'b4', title: 'Hero 4', img: cover4, alt: 'Hero banner 4' },
-  { id: 'b5', title: 'Hero 5', img: cover5, alt: 'Hero banner 5' },
-  { id: 'b6', title: 'Hero 6', img: cover6, alt: 'Hero banner 6' },
-  { id: 'b7', title: 'Hero 7', img: cover7, alt: 'Hero banner 7' },
+  { id: 'b2', title: 'Power Bessa', sinopsis: 'Zensse zensse sassinho', img: cover2, alt: 'Hero banner' },
+  { id: 'b1', title: 'Will que mode', sinopsis: 'Né Gassogo poque?', img: cover1, alt: 'Hero banner' },
+  {
+    id: 'b3',
+    title: 'Resident Will',
+    sinopsis: 'Ele bai da bessa bessa, vai da bessa no papaiam',
+    img: cover3,
+    alt: 'Hero banner',
+  },
+  { id: 'b4', title: 'Ingasso', sinopsis: 'Sy sero zy patas, ne gasso ne', img: cover4, alt: 'Hero banner' },
+  {
+    id: 'b5',
+    title: 'Will Cassones',
+    sinopsis: 'Lets find the greate tresure of bessos',
+    img: cover5,
+    alt: 'Hero banner',
+  },
+  { id: 'b6', title: 'Fifassogo', sinopsis: 'Sassinho zele, the great champion', img: cover6, alt: 'Hero banner' },
+  { id: 'b7', title: 'Willstellar', sinopsis: 'In the space, there will be bessa', img: cover7, alt: 'Hero banner' },
 ];
 
 export default { favouriteMovies, rankedMovies, trendingMovies, movieCovers };
