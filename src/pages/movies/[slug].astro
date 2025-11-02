@@ -4,37 +4,42 @@ import '../../styles/global.css';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import BackgroundWrapper from '../../components/BackgroundWrapper.astro';
+import BackgroundSlug from '../../components/BackgroundSlug.astro';
 import { allMovies } from '../../moviesData';
 
 export function getStaticPaths() {
   return allMovies.map((movie) => {
-
     const slug = movie.href.split('/').pop();
 
     return {
       params: { slug },
       props: { movie: movie },
     };
-
   });
 }
 
 const { movie } = Astro.props as { movie: any };
 
-const sinopsis = "Né gasso né, ai tchoy, cy bai da bessa bessa, bai da bessa no papai, ay tchy, bi casa meu cassogo bai da bess bai da bess ca-so-go nes ca so nes ga so da besso, will eu vo si da vo si da do besso, cy bai da besso no will bai da bess no papassao, so nes gasso ne gasso da besso"
+const sinopsis =
+  'Né gasso né, ai tchoy, cy bai da bessa bessa, bai da bessa no papai, ay tchy, bi casa meu cassogo bai da bess bai da bess ca-so-go nes ca so nes ga so da besso';
 ---
 
 <Layout class="bg-[#141414] font-sans">
-  <BackgroundWrapper src={movie.img.src}>
+  <BackgroundSlug src={movie.img.src} pos="center 20%" overlay={0.7}>
     <Header />
-    <section class="relative z-10 mx-auto flex h-[80dvh] max-w-[1100px] flex-col justify-end px-4 py-12 text-white">
-      <div class="flex items-end gap-4">
-        <h1 class="text-3xl font-extrabold md:text-5xl">{movie.title}</h1>
-        <p class="mt-3 text-gray-300">⭐ {movie.rating}</p>
+    <section
+      class="relative z-10 mx-auto flex h-[80dvh] max-w-[1100px] flex-col items-center justify-end px-4 py-12 text-center text-white md:items-start md:justify-center md:p-8 md:text-left"
+    >
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center rounded bg-[#0b60ab] px-2 py-0.5 text-xs font-semibold text-white">GASSO</span>
+        <h3 class="text-sm">Duration: 120 minutes</h3>
       </div>
+      <div class="flex items-end gap-4 text-start">
+        <h1 class="text-3xl font-extrabold md:text-5xl">{movie.title}</h1>
+        <p class="text-gray-300">⭐ {movie.rating}</p>
+      </div>
+
       <div class="mt-5 flex flex-wrap items-center gap-2 sm:mt-6 sm:gap-3 md:gap-4">
-        <!-- Play -->
         <button
           type="button"
           aria-label="Play"
@@ -48,7 +53,6 @@ const sinopsis = "Né gasso né, ai tchoy, cy bai da bessa bessa, bai da bessa n
           <span class="text-xs sm:text-sm md:text-base">Play</span>
         </button>
 
-        <!-- Favourite -->
         <button
           type="button"
           aria-label="Add to favourites"
@@ -58,7 +62,6 @@ const sinopsis = "Né gasso né, ai tchoy, cy bai da bessa bessa, bai da bessa n
           <span class="text-xs sm:text-sm md:text-base">Favourite</span>
         </button>
 
-        <!-- Trailer -->
         <button
           type="button"
           aria-label="Watch trailer"
@@ -67,7 +70,10 @@ const sinopsis = "Né gasso né, ai tchoy, cy bai da bessa bessa, bai da bessa n
           <span class="text-xs sm:text-sm md:text-base">Trailer</span>
         </button>
       </div>
+      <p class="synopsis mt-6 w-[70%] md:mt-8">
+        {sinopsis}
+      </p>
     </section>
-  </BackgroundWrapper>
+  </BackgroundSlug>
   <Footer />
 </Layout>
