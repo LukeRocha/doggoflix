@@ -1,0 +1,35 @@
+---
+const { src } = Astro.props as { src: string };
+---
+
+<div
+  class="relative min-h-[60dvh] w-full bg-cover bg-center bg-no-repeat md:min-h-[65vh] md:bg-[position:85%_center]"
+  style={`background-image:url('${src}');`}
+>
+  <!-- UMA ÚNICA CAMADA -->
+  <div class="hero-overlay pointer-events-none absolute inset-0"></div>
+
+  <div class="relative z-10">
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* mobile: escuro uniforme forte */
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  /* md+ : compõe todos os gradientes numa camada só */
+  @media (min-width: 768px) {
+    .hero-overlay {
+      background:
+        /* vinheta esquerda -> direita */
+        linear-gradient(90deg, rgba(0, 0, 0, 0.85) 20%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0) 75%),
+        /* vinheta topo e base */ linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 35%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 35%),
+        /* vinheta radial à direita */ radial-gradient(60% 80% at 100% 50%, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 60%),
+        /* leve véu global */ rgba(0, 0, 0, 0.3);
+    }
+  }
+</style>
