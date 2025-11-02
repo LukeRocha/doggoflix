@@ -8,7 +8,7 @@ interface Movie {
   img: ImageMetadata | string;
   alt: string;
   href?: string;
-  rating?: Number;
+  rating?: number;
 }
 type Collection = Movie[];
 
@@ -27,7 +27,13 @@ const { category, collection } = Astro.props as Props;
 
   <div class="relative">
     <div class=`no-scrollbar flex snap-x snap-proximity  ${category == "Trending" ? 'gap-18': 'gap-6'} overflow-x-auto scroll-smooth` id="slider">
-      {collection.map((movie, i) => (category === 'Trending' ? <TrendingCarouselItem {...movie} rank={i + 1} /> : <CarouselItem {...movie} />))}
+      {
+        collection.map((movie, index) => (
+          <a href={movie.href} class="contents">
+            {category === 'Trending' ? <TrendingCarouselItem {...movie} rank={index + 1} /> : <CarouselItem {...movie} />}
+          </a>
+        ))
+      }
     </div>
 
     <button
