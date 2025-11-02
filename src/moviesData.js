@@ -37,7 +37,7 @@ const slug = (t) =>
     .replace(/\s+/g, '-')
     .replace(/[^a-z0-9-]/g, '')}`;
 
-const allMovies = [
+export const allMovies = [
   { id: 'm1', title: 'The Gasso', img: img1, alt: 'The Gasso poster', href: slug('The Gasso'), rating: 8.7 },
   { id: 'm2', title: 'Gasso Waves', img: img2, alt: 'Gasso Waves poster', href: slug('Gasso Waves'), rating: 8.5 },
   { id: 'm3', title: 'Kingasso', img: img3, alt: 'Kingasso poster', href: slug('Kingasso'), rating: 8.2 },
@@ -170,8 +170,8 @@ export const trendingMovies = [
   { ...allMovies[13] },
   { ...allMovies[9] },
   { ...allMovies[22] },
-  { ...allMovies[8] },
   { ...allMovies[3] },
+  { ...allMovies[8] },
 ];
 
 export const movieCovers = [
@@ -196,4 +196,4 @@ export const movieCovers = [
   { id: 'b7', title: 'Willstellar', sinopsis: 'In the space, there will be bessa', img: cover7, alt: 'Hero banner' },
 ];
 
-export default { favouriteMovies, rankedMovies, trendingMovies, movieCovers };
+export default { allMovies, favouriteMovies, rankedMovies, trendingMovies, movieCovers };
