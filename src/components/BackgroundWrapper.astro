@@ -2,7 +2,8 @@
 import type { ImageMetadata } from 'astro';
 const { src } = Astro.props as { src: string | ImageMetadata };
 ---
-<div class="relative w-full min-h-[70dvh] bg-center bg-cover" style={`background-image:url('${src}');`}>
+
+<div class="relative min-h-[70dvh] w-full bg-cover bg-center" style={`background-image:url('${src}');`}>
   <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70"></div>
   <div class="relative z-10 h-full">
     <slot />
