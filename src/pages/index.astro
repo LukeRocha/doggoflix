@@ -11,18 +11,17 @@ import moviesData from '../moviesData';
 const { favouriteMovies, rankedMovies, trendingMovies, movieCovers } = moviesData;
 const landingIndex = Math.floor(Math.random() * movieCovers.length);
 const landingCover = movieCovers[landingIndex];
-const movieCover = landingCover.img.src;
 ---
 
 <Layout class="bg-[#141414] font-sans">
-  <BackgroundWrapper imgSrc={movieCover}>
+  <BackgroundWrapper src={landingCover.img.src}>
     <Header />
     <Hero title={landingCover.title} sinopsis={landingCover.sinopsis} />
   </BackgroundWrapper>
 
   <Carousel category="Favourites" collection={favouriteMovies} />
-  <Carousel category="Best movies" collection={rankedMovies} />
   <Carousel category="Trending" collection={trendingMovies} />
+  <Carousel category="Best movies" collection={rankedMovies} />
 
   <Footer />
 </Layout>
