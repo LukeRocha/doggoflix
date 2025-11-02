@@ -31,7 +31,11 @@ import cover5 from './assets/banners/hero-bg-5.png';
 import cover6 from './assets/banners/hero-bg-6.png';
 import cover7 from './assets/banners/hero-bg-7.png';
 
-const slug = (t) => `/movies/${t.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`;
+const slug = (t) =>
+  `/movies/${t
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')}`;
 
 const allMovies = [
   { id: 'm1', title: 'The Gasso', img: img1, alt: 'The Gasso poster', href: slug('The Gasso'), rating: 8.7 },
@@ -43,21 +47,84 @@ const allMovies = [
   { id: 'm7', title: 'Sassinho Man', img: img7, alt: 'Sassinho Man poster', href: slug('Sassinho Man'), rating: 8.0 },
   { id: 'm8', title: 'Beto Gasso', img: img8, alt: 'Beto Gasso poster', href: slug('Beto Gasso'), rating: 7.7 },
   { id: 'm9', title: 'Cassogue', img: img9, alt: 'Cassogue poster', href: slug('Cassogue'), rating: 7.9 },
-  { id: 'm10', title: 'Ingasso Jones', img: img10, alt: 'Ingasso Jones poster', href: slug('Ingasso Jones'), rating: 8.3 },
+  {
+    id: 'm10',
+    title: 'Ingasso Jones',
+    img: img10,
+    alt: 'Ingasso Jones poster',
+    href: slug('Ingasso Jones'),
+    rating: 8.3,
+  },
   { id: 'm11', title: 'Bibopitchoy', img: img11, alt: 'Bibopitchoy poster', href: slug('Bibopitchoy'), rating: 7.6 },
   { id: 'm12', title: 'Ne gasso Z', img: img12, alt: 'Ne gasso Z poster', href: slug('Ne gasso Z'), rating: 8.4 },
-  { id: 'm13', title: 'Mamassoy Chef', img: img13, alt: 'Mamassoy Chef poster', href: slug('Mamassoy Chef'), rating: 7.8 },
-  { id: 'm14', title: 'Stardust Crusader', img: img14, alt: 'Stardust Crusader poster', href: slug('Stardust Crusader'), rating: 7.5 },
-  { id: 'm15', title: 'Ne Gasso Z II', img: img15, alt: 'Ne Gasso Z II poster', href: slug('Ne Gasso Z II'), rating: 8.1 },
+  {
+    id: 'm13',
+    title: 'Mamassoy Chef',
+    img: img13,
+    alt: 'Mamassoy Chef poster',
+    href: slug('Mamassoy Chef'),
+    rating: 7.8,
+  },
+  {
+    id: 'm14',
+    title: 'Stardust Crusader',
+    img: img14,
+    alt: 'Stardust Crusader poster',
+    href: slug('Stardust Crusader'),
+    rating: 7.5,
+  },
+  {
+    id: 'm15',
+    title: 'Ne Gasso Z II',
+    img: img15,
+    alt: 'Ne Gasso Z II poster',
+    href: slug('Ne Gasso Z II'),
+    rating: 8.1,
+  },
   { id: 'm16', title: 'Pitcho COP', img: img16, alt: 'Pitcho COP poster', href: slug('Pitcho COP'), rating: 7.6 },
   { id: 'm17', title: 'Willstellar', img: img17, alt: 'Willstellar poster', href: slug('Willstellar'), rating: 7.9 },
   { id: 'm18', title: 'Power Bessa', img: img18, alt: 'Power Bessa poster', href: slug('Power Bessa'), rating: 8.0 },
-  { id: 'm19', title: 'Resident WIll', img: img19, alt: 'Resident WIll poster', href: slug('Resident WIll'), rating: 7.4 },
+  {
+    id: 'm19',
+    title: 'Resident WIll',
+    img: img19,
+    alt: 'Resident WIll poster',
+    href: slug('Resident WIll'),
+    rating: 7.4,
+  },
   { id: 'm20', title: 'Nega Souls', img: img20, alt: 'Nega Souls poster', href: slug('Nega Souls'), rating: 7.7 },
-  { id: 'm21', title: 'Mistery Besso', img: img21, alt: 'Mistery Besso poster', href: slug('Mistery Besso'), rating: 7.8 },
-  { id: 'm22', title: '007 - Golden Bessa', img: img22, alt: '007 - Golden Bessa poster', href: slug('007 - Golden Bessa'), rating: 7.6 },
-  { id: 'm23', title: 'Cy sero zy patas', img: img23, alt: 'Cy sero zy patas poster', href: slug('Cy sero zy patas'), rating: 7.9 },
-  { id: 'm24', title: 'BessaWill Burton', img: img24, alt: 'BessaWill Burton poster', href: slug('BessaWill Burton'), rating: 8.2 },
+  {
+    id: 'm21',
+    title: 'Mistery Besso',
+    img: img21,
+    alt: 'Mistery Besso poster',
+    href: slug('Mistery Besso'),
+    rating: 7.8,
+  },
+  {
+    id: 'm22',
+    title: '007 - Golden Bessa',
+    img: img22,
+    alt: '007 - Golden Bessa poster',
+    href: slug('007 - Golden Bessa'),
+    rating: 7.6,
+  },
+  {
+    id: 'm23',
+    title: 'Cy sero zy patas',
+    img: img23,
+    alt: 'Cy sero zy patas poster',
+    href: slug('Cy sero zy patas'),
+    rating: 7.9,
+  },
+  {
+    id: 'm24',
+    title: 'BessaWill Burton',
+    img: img24,
+    alt: 'BessaWill Burton poster',
+    href: slug('BessaWill Burton'),
+    rating: 8.2,
+  },
 ];
 export const favouriteMovies = [
   allMovies[1],
@@ -84,7 +151,6 @@ export const rankedMovies = [
   allMovies[11],
   allMovies[20],
 ];
-
 
 export const trendingMovies = [
   { ...allMovies[19] },
