@@ -1,0 +1,76 @@
+---
+import CarouselItem from './CarouselItem.astro';
+import TrendingCarouselItem from './TrendingItem.astro';
+
+interface Movie {
+  id: string;
+  title: string;
+  img: ImageMetadata | string;
+  alt: string;
+  href?: string;
+  rating?: Number;
+}
+type Collection = Movie[];
+
+interface Props {
+  category: string;
+  collection: Collection;
+}
+
+const { category, collection } = Astro.props as Props;
+---
+
+<section class="items-center bg-[#141414] px-4 py-4">
+  <div>
+    <h2 class="text-3xl font-black text-white">{category}</h2>
+  </div>
+
+  <div class="relative">
+    <div class=`no-scrollbar flex snap-x snap-proximity  ${category == "Trending" ? 'gap-18': 'gap-6'} overflow-x-auto scroll-smooth` id="slider">
+      {collection.map((movie, i) =>
+  category === "Trending"
+    ? <TrendingCarouselItem {...movie} rank={i + 1} />
+    : <CarouselItem {...movie} />
+)}
+
+    </div>
+
+    <button
+      class="text-md absolute top-1/2 left-1 z-100 inline-flex h-10 w-6 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/30 text-4xl leading-none shadow-lg ring-1 ring-white/20 backdrop-blur-sm select-none"
+      onclick="slideToggle(this, 'left')"
+      aria-label="Scroll left"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
+        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg></button
+    >
+
+    <button
+      class="text-md absolute top-1/2 right-1 z-100 inline-flex h-10 w-6 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/30 text-4xl leading-none shadow-lg ring-1 ring-white/20 backdrop-blur-sm select-none"
+      onclick="slideToggle(this, 'right')"
+      aria-label="Scroll right"
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg></button
+    >
+  </div>
+</section>
+
+<style>
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+
+<script is:inline>
+  function slideToggle(button, direction) {
+    const slider = button.parentElement;
+    const scroll = slider.querySelector('#slider');
+    direction == 'left' ? (scroll.scrollLeft -= 200) : (scroll.scrollLeft += 200);
+  }
+</script>

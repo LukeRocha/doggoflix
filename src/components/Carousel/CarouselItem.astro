@@ -1,0 +1,24 @@
+---
+interface Movie {
+  id: string;
+  title: string;
+  img: ImageMetadata;
+  alt: string;
+  href?: string;
+  rating?: number;
+}
+const { title, img, rating, alt } = Astro.props as Movie;
+---
+
+<div class="flex w-[160px] flex-none shrink-0 flex-col gap-6 px-2 text-white">
+    <img
+      src={img.src}
+      alt=""
+      class="stretch mt-4 block h-full w-full max-w-none cursor-pointer rounded bg-position-[center_top_1rem] object-cover duration-100 hover:scale-130"
+    />
+  <span class="flex justify-between pr-2 text-left text-sm">
+  <h2 class="font-semibold leading-tight truncate min-w-0">
+      {title}</h2>
+  <span class="shrink-0 text-right">⭐ {rating?.toFixed?.(1) ?? rating}</span>
+  </span>
+</div>

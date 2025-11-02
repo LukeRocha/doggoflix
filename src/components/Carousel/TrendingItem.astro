@@ -1,0 +1,37 @@
+---
+interface Movie {
+  id: string;
+  title: string;
+  img: ImageMetadata;
+  alt: string;
+  href?: string;
+  rating?: number;
+  rank: number;
+}
+
+
+const { title, img, rating, alt, rank } = Astro.props as Movie;
+---
+
+<div class="flex w-[160px] flex-none shrink-0 flex-col gap-2 px-2 text-white">
+<div class="relative w-[160px] h-[220px] mt-4 mb-4">
+    <span
+      class="absolute -left-1 -bottom-4 z-30
+             text-[100px] leading-none font-black
+             text-white/80 drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]
+             pointer-events-none select-none">
+      #{rank}
+    </span>
+    <img
+      src={img.src}
+      alt={alt}
+      class="mb-3 relative z-20 block h-full w-full max-w-none rounded object-cover duration-100 hover:scale-130"
+      loading="lazy"
+    />
+  </div>
+  <span class="flex justify-between pr-2 text-left text-sm">
+    <h2 class="font-semibold leading-tight truncate min-w-0">{title}</h2>
+    <span class="shrink-0 text-right">⭐ {rating?.toFixed?.(1) ?? rating}</span>
+  </span>
+</div>
+
