@@ -1,0 +1,66 @@
+---
+import '../../styles/global.css';
+
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BackgroundWrapper from '../../components/BackgroundWrapper.astro';
+import { allMovies } from '../../moviesData'; // ← named import correto
+
+export function getStaticPaths() {
+  return allMovies.map((movie: any) => {
+    const slug = movie.href?.split('/').pop();
+    return {
+      params: { slug },
+      props: { movie: movie },
+    };
+  });
+}
+
+const { movie } = Astro.props as { movie: any };
+
+const coverSrc = typeof movie.cover === 'string' ? movie.cover : (movie.cover?.src ?? (typeof movie.img === 'string' ? movie.img : movie.img.src));
+---
+
+<Layout class="bg-[#141414] font-sans">
+  <BackgroundWrapper src={coverSrc}>
+    <Header />
+    <section class="relative z-10 mx-auto max-w-[1100px] h-[80dvh] px-4 py-12 text-white flex flex-col justify-end">
+      <h1 class="text-3xl font-extrabold md:text-5xl">{movie.title}</h1>
+      <p class="mt-3 text-gray-300">⭐ {movie.rating}</p>
+      <p class="mt-4 max-w-prose text-gray-200">{movie.alt}</p>
+       <div class="mt-5 flex flex-wrap items-center gap-3 sm:mt-6 sm:gap-4">
+        <button
+          type="button"
+          aria-label="Play"
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-[#0b60ab] px-5 py-2 font-semibold text-white shadow-md transition hover:bg-[#094c86] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0b60ab]/60 focus-visible:ring-offset-2 sm:px-6"
+        >
+          <span class="flex h-8 w-4 items-center justify-center">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M8 5v14l11-7-11-7z" fill="#ffffff"></path>
+            </svg>
+          </span>
+          <span class="text-sm md:text-base">Play</span>
+        </button>
+
+        <button
+          type="button"
+          aria-label="More info"
+          class="inline-flex min-h-[44px] items-center gap-3 rounded-md bg-black/40 px-4 py-2 font-semibold text-white ring-1 ring-white/10 transition hover:bg-black/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2"
+        >
+          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-black/30 ring-1 ring-white/10" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10" stroke="#fff" stroke-opacity="0.9" stroke-width="1.2"></circle>
+              <rect x="11.3" y="10" width="1.4" height="5.5" rx="0.4" fill="#fff"></rect>
+              <circle cx="12" cy="7.4" r="0.8" fill="#fff"></circle>
+            </svg>
+          </span>
+          <span class="text-sm md:text-base">More info</span>
+        </button>
+
+        <a href="#" class="ml-1 inline-block self-center py-2 text-sm text-gray-300 underline underline-offset-4 hover:text-white"> Watch trailer </a>
+      </div>
+    </section>
+  </BackgroundWrapper>
+  <Footer />
+</Layout>
