@@ -6,8 +6,6 @@ import astroIcon from 'astro-icon';
 export default defineConfig({
   output: 'server',
   adapter: netlify(),
-  integrations: [
-    astroIcon({ iconSets: ['material-symbols'] }),
-  ],
+  integrations: [astroIcon({ iconSets: ['material-symbols'] })],
   vite: { plugins: [tailwindcss()] },
 });
