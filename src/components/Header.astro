@@ -4,8 +4,74 @@ import profileImg from '../assets/cassogo-profile.jpg';
 import { Icon } from 'astro-icon/components';
 ---
 
-<header class="relative z-[50] text-gray-100">
-  <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
+<header class="relative z-80 flex h-12 w-[100%] items-center justify-between bg-[#00050d] p-3 font-bold text-gray-100">
+  <div id="overlay" class="z-85 blur-sm"></div>
+  <nav class="z-90">
+    <div class="flex items-center">
+      <button class="relative flex cursor-pointer items-center rounded p-2 text-xl" id="header-button"
+        >Menu
+        <Icon name="material-symbols:arrow-drop-down-rounded" id="chevron-menu" />
+      </button>
+    </div>
+
+    <ul id="header-menu" class="absolute top-[54px] w-[160px] flex-col items-start justify-center gap-6 rounded bg-[#141414] p-5 pt-6 pb-6">
+      <li><a href="/" class="transition hover:text-white">Home</a></li>
+      <li><a href="/" class="transition hover:text-white">Tv Shows</a></li>
+      <li><a href="/" class="transition hover:text-white">Movies</a></li>
+      <li><a href="/" class="transition hover:text-white">My List</a></li>
+    </ul>
+  </nav>
+  <span>
+    <a href="/" aria-label="DOGGO Home">
+      <img src={logo.src} alt="DOGGO" class="w-[80px] cursor-pointer" />
+    </a>
+  </span>
+
+  <div class="relative">
+    <button
+      id="user-button"
+      aria-haspopup="menu"
+      aria-expanded="false"
+      aria-controls="user-menu"
+      class="relative flex items-center gap-2 rounded px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+      type="button"
+    >
+      <Icon name="material-symbols:search-rounded" width="20" height="20" />
+      <img src={profileImg.src} alt="Profile" class="h-8 w-8 cursor-pointer object-cover" />
+    </button>
+
+    <ul
+      id="user-menu"
+      role="menu"
+      class="absolute top-full right-0 z-[45] mt-2 hidden w-[220px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
+    >
+      <li role="none">
+        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+          <Icon name="material-symbols:person" width="16" height="16" class="flex-shrink-0" />
+          <span>Profile</span>
+        </a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+          <Icon name="material-symbols:settings" width="16" height="16" class="flex-shrink-0" />
+          <span>Settings</span>
+        </a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+          <Icon name="material-symbols:credit-card" width="16" height="16" class="flex-shrink-0" />
+          <span>Billing</span>
+        </a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
+          <Icon name="material-symbols:logout" width="16" height="16" class="flex-shrink-0" />
+          <span>Sign out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
     <div class="flex items-center gap-6 lg:gap-[120px]">
       <a href="/" aria-label="DOGGO Home">
         <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
@@ -146,59 +212,64 @@ import { Icon } from 'astro-icon/components';
 
     <div class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414]/20 to-transparent"></div>
     <div class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414]/20 to-transparent"></div>
-  </div>
+  </div> -->
 </header>
 
 <script type="module">
-  const pairs = [
-    ['categories-button', 'categories-menu'],
-    ['user-button', 'user-menu'],
-  ];
+  const menuButton = document.getElementById('header-button');
+  const headerNav = document.getElementById('header-menu');
+  const appOverlay = document.getElementById('overlay');
+  const chevronMenu = document.getElementById('chevron-menu');
 
-  const buttons = [];
-  const menus = [];
-
-  for (const [buttonId, menuId] of pairs) {
-    const button = document.getElementById(buttonId);
-    const menu = document.getElementById(menuId);
-    if (!button || !menu) continue;
-
-    buttons.push(button);
-    menus.push(menu);
-    menu.classList.add('hidden');
-    button.setAttribute('aria-expanded', 'false');
-
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = !menu.classList.contains('hidden');
-
-      menus.forEach((m) => m.classList.add('hidden'));
-      buttons.forEach((b) => b.setAttribute('aria-expanded', 'false'));
-
-      if (!isOpen) {
-        menu.classList.remove('hidden');
-        button.setAttribute('aria-expanded', 'true');
-      }
-    });
-  }
-
-  document.addEventListener('click', (e) => {
-    const insideMenu = menus.some((m) => m.contains(e.target));
-    const onButton = buttons.some((b) => b.contains(e.target));
-    if (!insideMenu && !onButton) {
-      menus.forEach((m) => m.classList.add('hidden'));
-      buttons.forEach((b) => b.setAttribute('aria-expanded', 'false'));
+  menuButton.addEventListener('click', () => {
+    if (headerNav.style.display == 'none') {
+      headerNav.style.display = 'flex';
+      appOverlay.style.display = 'block';
+      menuButton.style.backgroundColor = 'white';
+      menuButton.style.color = 'black';
+      chevronMenu.style.transform = 'rotate(180deg)';
+    } else {
+      headerNav.style.display = 'none';
+      appOverlay.style.display = 'none';
+      menuButton.style.backgroundColor = 'black';
+      menuButton.style.color = 'white';
+      chevronMenu.style.transform = 'rotate(0deg)';
     }
   });
 </script>
 
 <style>
+  #overlay {
+    display: none;
+    position: absolute;
+    height: 1090vw;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background-color: black;
+    opacity: 0.6;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
+  }
+
+  #chevron-menu {
+    transition: transform 0.2s ease-out;
+  }
+
   header a {
     letter-spacing: 0.2px;
   }
+
   header nav a {
     padding-left: 6px;
     padding-right: 6px;
+  }
+
+  #header-menu {
+    display: none;
+    opacity: 0.88;
   }
 
   #categories-menu,
