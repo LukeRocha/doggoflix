@@ -4,215 +4,112 @@ import profileImg from '../assets/cassogo-profile.jpg';
 import { Icon } from 'astro-icon/components';
 ---
 
-<header class="relative z-80 flex h-12 w-[100%] items-center justify-between bg-[#00050d] p-3 font-bold text-gray-100">
+<header id="header-wrapper" class="fixed top-0 left-0 z-[150] flex h-16 w-full items-center justify-center transition-all duration-500">
+  <div id="header-bg" class="absolute inset-0 bg-[#00050d] transition-all duration-500 ease-in-out"></div>
+
   <div id="overlay" class="z-85 blur-sm"></div>
-  <nav class="z-90">
+
+  <div class="relative z-90 flex h-full w-full items-center justify-between px-6">
     <div class="flex items-center">
-      <button class="relative flex cursor-pointer items-center rounded p-2 text-xl" id="header-button"
-        >Menu
-        <Icon name="material-symbols:arrow-drop-down-rounded" id="chevron-menu" />
+      <button
+        class="relative flex cursor-pointer items-center rounded p-2 px-2 text-lg font-medium tracking-wide text-white transition-colors hover:bg-white hover:text-black md:hidden"
+        id="header-button"
+      >
+        Menu
+        <Icon name="material-symbols:arrow-drop-down-rounded" class="text-xl" id="chevron-menu" />
       </button>
+
+      <div class="hidden items-center md:flex">
+        <nav class="flex items-center justify-start gap-5">
+          <span>
+            <a href="/" aria-label="DOGGO Home">
+              <img src={logo.src} alt="DOGGO" class="w-[80px] cursor-pointer" />
+            </a>
+          </span>
+          <ul class="flex justify-start gap-[8px]">
+            <li class="w-full">
+              <a
+                href="/"
+                class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Movies
+              </a>
+            </li>
+            <li class="w-full">
+              <a
+                href="/"
+                class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Shows
+              </a>
+            </li>
+            <li class="w-full">
+              <a
+                href="/"
+                class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Sports
+              </a>
+            </li>
+            <li class="w-full">
+              <a
+                href="/"
+                class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Live
+              </a>
+            </li>
+            <li class="w-full">
+              <a
+                href="/"
+                class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+              >
+                Music
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
 
-    <ul id="header-menu" class="absolute top-[54px] w-[160px] flex-col items-start justify-center gap-6 rounded bg-[#141414] p-5 pt-6 pb-6">
-      <li><a href="/" class="transition hover:text-white">Home</a></li>
-      <li><a href="/" class="transition hover:text-white">Tv Shows</a></li>
-      <li><a href="/" class="transition hover:text-white">Movies</a></li>
-      <li><a href="/" class="transition hover:text-white">My List</a></li>
+    <ul id="header-menu" class="absolute top-[54px] left-5 w-[180px] flex-col gap-1 rounded-lg bg-[#1a1a1a] p-2 shadow-2xl ring-1 ring-white/10">
+      <li class="w-full">
+        <a href="/" class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+          >Home</a
+        >
+      </li>
+      <li class="w-full">
+        <a href="/" class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+          >Shows</a
+        >
+      </li>
+      <li class="w-full">
+        <a href="/" class="text-md block w-full rounded-md px-4 py-2.5 font-medium tracking-wide text-white transition-all hover:bg-white/10 hover:text-white"
+          >Movies</a
+        >
+      </li>
+      <li class="mt-2 w-full px-1 pb-2">
+        <button
+          type="button"
+          class="relative flex w-full cursor-pointer items-center justify-center rounded-md bg-[#00a8e1] px-4 py-2.5 text-sm font-bold tracking-wider text-white shadow-[0_0_15px_rgba(0,168,225,0.5)] transition-all duration-300 hover:scale-[1.02] hover:bg-[#00c3ff] hover:shadow-[0_0_25px_rgba(0,168,225,0.7)] active:scale-95"
+        >
+          Join Doggo
+        </button>
+      </li>
     </ul>
-  </nav>
-  <span>
-    <a href="/" aria-label="DOGGO Home">
+
+    <a href="/" aria-label="DOGGO Home" class="md:hidden">
       <img src={logo.src} alt="DOGGO" class="w-[80px] cursor-pointer" />
     </a>
-  </span>
 
-  <div class="relative">
-    <button
-      id="user-button"
-      aria-haspopup="menu"
-      aria-expanded="false"
-      aria-controls="user-menu"
-      class="relative flex items-center gap-2 rounded px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-      type="button"
-    >
-      <Icon name="material-symbols:search-rounded" width="20" height="20" />
-      <img src={profileImg.src} alt="Profile" class="h-8 w-8 cursor-pointer object-cover" />
-    </button>
-
-    <ul
-      id="user-menu"
-      role="menu"
-      class="absolute top-full right-0 z-[45] mt-2 hidden w-[220px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
-    >
-      <li role="none">
-        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-          <Icon name="material-symbols:person" width="16" height="16" class="flex-shrink-0" />
-          <span>Profile</span>
-        </a>
-      </li>
-      <li role="none">
-        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-          <Icon name="material-symbols:settings" width="16" height="16" class="flex-shrink-0" />
-          <span>Settings</span>
-        </a>
-      </li>
-      <li role="none">
-        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-          <Icon name="material-symbols:credit-card" width="16" height="16" class="flex-shrink-0" />
-          <span>Billing</span>
-        </a>
-      </li>
-      <li role="none">
-        <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-          <Icon name="material-symbols:logout" width="16" height="16" class="flex-shrink-0" />
-          <span>Sign out</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <!-- <div class="mx-auto flex w-full max-w-[1800px] items-center justify-between px-4 py-3">
-    <div class="flex items-center gap-6 lg:gap-[120px]">
-      <a href="/" aria-label="DOGGO Home">
-        <img src={logo.src} alt="DOGGO" class="w-[120px] cursor-pointer" />
-      </a>
-
-      <nav id="desktop-menu" class="hidden items-center text-base text-gray-100 md:flex">
-        <ul class="flex items-center gap-6">
-          <li><a href="/" class="transition hover:text-white">Home</a></li>
-          <li><a href="/" class="transition hover:text-white">Tv Shows</a></li>
-          <li><a href="/" class="transition hover:text-white">Movies</a></li>
-          <li><a href="/" class="transition hover:text-white">My List</a></li>
-
-          <li class="relative">
-            <button
-              id="categories-button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-controls="categories-menu"
-              type="button"
-              class="inline-flex cursor-pointer items-center gap-2 px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-            >
-              Categories
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </button>
-
-            <ul
-              id="categories-menu"
-              role="menu"
-              class="absolute top-full left-0 mt-2 hidden w-[240px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
-            >
-              <li role="none">
-                <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-                  <Icon name="material-symbols:whatshot" width="16" height="16" class="flex-shrink-0" />
-                  <span>New &amp; Popular</span>
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-                  <Icon name="material-symbols:theater-comedy" width="16" height="16" class="flex-shrink-0" />
-                  <span>Comedy</span>
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-                  <Icon name="material-symbols:skull" width="16" height="16" class="flex-shrink-0" />
-                  <span>Horror</span>
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-                  <Icon name="material-symbols:movie" width="16" height="16" class="flex-shrink-0" />
-                  <span>Documentaries</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </div>
-
-    <div class="flex items-center gap-1 md:gap-3">
-      <button
-        class="inline-flex cursor-pointer items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-        aria-label="Search"
-        type="button"
-      >
-        <Icon name="material-symbols:search-rounded" width="20" height="20" />
-      </button>
-
-      <button
-        class="inline-flex cursor-pointer items-center gap-3 rounded-full p-2 text-gray-100 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-        aria-label="Notifications"
-        type="button"
-      >
-        <Icon name="material-symbols:notifications-active" width="20" height="20" class="flex cursor-pointer" />
-      </button>
-
-      <div class="relative">
-        <button
-          id="user-button"
-          aria-haspopup="menu"
-          aria-expanded="false"
-          aria-controls="user-menu"
-          class="relative flex items-center gap-2 rounded px-2 py-1 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
-          type="button"
-        >
-          <img src={profileImg.src} alt="Profile" class="h-8 w-8 cursor-pointer object-cover" />
-        </button>
-
-        <ul
-          id="user-menu"
-          role="menu"
-          class="absolute top-full right-0 z-[45] mt-2 hidden w-[220px] rounded-xl bg-[#1f1f1f]/65 p-2 text-gray-100 shadow-xl ring-1 ring-black/40 backdrop-blur-sm"
-        >
-          <li role="none">
-            <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-              <Icon name="material-symbols:person" width="16" height="16" class="flex-shrink-0" />
-              <span>Profile</span>
-            </a>
-          </li>
-          <li role="none">
-            <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-              <Icon name="material-symbols:settings" width="16" height="16" class="flex-shrink-0" />
-              <span>Settings</span>
-            </a>
-          </li>
-          <li role="none">
-            <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-              <Icon name="material-symbols:credit-card" width="16" height="16" class="flex-shrink-0" />
-              <span>Billing</span>
-            </a>
-          </li>
-          <li role="none">
-            <a role="menuitem" href="/" class="flex items-center gap-3 rounded px-3 py-2 hover:bg-white/5">
-              <Icon name="material-symbols:logout" width="16" height="16" class="flex-shrink-0" />
-              <span>Sign out</span>
-            </a>
-          </li>
-        </ul>
+    <div class="relative flex flex-row items-center gap-4">
+      <div class="flex items-center gap-3">
+        <Icon name="material-symbols:search-rounded" width="28" height="28" class="hidden cursor-pointer text-white transition-colors md:flex" />
+        <Icon name="material-symbols:notifications-outline-sharp" width="28" height="28" class="shake-hover cursor-pointer text-white" />
+        <img src={profileImg.src} alt="Profile" class="h-8 w-8 cursor-pointer rounded-full object-cover" />
       </div>
     </div>
   </div>
-
-  <div class="relative md:hidden">
-    <nav aria-label="Primary mobile" class="scrollbar-hide text-md flex gap-4 overflow-x-auto px-4 py-3 font-medium text-gray-100">
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Home</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Tv Shows</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Movies</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">My List</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">New &amp; Popular</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Anime</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Documentaries</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Horror</a>
-      <a href="/" class="shrink-0 p-1 transition hover:text-white">Comedy</a>
-    </nav>
-
-    <div class="pointer-events-none absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-[#141414]/20 to-transparent"></div>
-    <div class="pointer-events-none absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-[#141414]/20 to-transparent"></div>
-  </div> -->
 </header>
 
 <script type="module">
@@ -222,7 +119,7 @@ import { Icon } from 'astro-icon/components';
   const chevronMenu = document.getElementById('chevron-menu');
 
   menuButton.addEventListener('click', () => {
-    if (headerNav.style.display == 'none') {
+    if (headerNav.style.display === 'none' || !headerNav.style.display) {
       headerNav.style.display = 'flex';
       appOverlay.style.display = 'block';
       menuButton.style.backgroundColor = 'white';
@@ -236,54 +133,82 @@ import { Icon } from 'astro-icon/components';
       chevronMenu.style.transform = 'rotate(0deg)';
     }
   });
+
+  const wrapper = document.getElementById('header-wrapper');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20 && window.innerWidth > 768) {
+      wrapper.classList.add('scrolled');
+    } else {
+      wrapper.classList.remove('scrolled');
+    }
+  });
+
 </script>
 
 <style>
+  #header-bg {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    left: 49.99999%;
+    transform: translateX(-50%);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    background-color: #00050d;
+    border-bottom: 1px solid transparent;
+  }
+
+  #header-wrapper.scrolled #header-bg {
+    background-color: rgba(0, 5, 13, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    width: 99%;
+  }
+
+  header nav a,
+  header button,
+  header img {
+    transition: none !important;
+  }
+
   #overlay {
     display: none;
     position: absolute;
-    height: 1090vw;
+    height: 100vh;
     width: 100vw;
     top: 0;
     left: 0;
-    bottom: 0;
-    right: 0;
-
     background-color: black;
     opacity: 0.6;
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.9);
-  }
-
-  #chevron-menu {
-    transition: transform 0.2s ease-out;
-  }
-
-  header a {
-    letter-spacing: 0.2px;
-  }
-
-  header nav a {
-    padding-left: 6px;
-    padding-right: 6px;
+    z-index: 85;
   }
 
   #header-menu {
     display: none;
-    opacity: 0.88;
+    z-index: 100;
   }
 
-  #categories-menu,
-  #user-menu {
-    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.6);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+  @keyframes smooth-shake {
+    0%,
+    100% {
+      transform: translateX(0) rotate(0deg);
+    }
+    25% {
+      transform: translateX(-1.5px) rotate(-1deg);
+    }
+    75% {
+      transform: translateX(1.5px) rotate(1deg);
+    }
   }
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  .shake-hover:hover {
+    animation: smooth-shake 0.4s ease-in-out infinite;
+    display: inline-block;
   }
 </style>
