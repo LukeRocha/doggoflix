@@ -59,7 +59,7 @@ export const allMovies = [
   { id: 'm12', title: 'Ne gasso Z', img: img12, alt: 'Ne gasso Z poster', href: '/movies/ne-gasso-z', rating: 8.4 },
   {
     id: 'm13',
-    title: 'Mamassoy Chef',
+    title: 'Sefe sefe',
     img: img13,
     alt: 'Mamassoy Chef poster',
     href: '/movies/mamassoy-chef',
@@ -67,7 +67,7 @@ export const allMovies = [
   },
   {
     id: 'm14',
-    title: 'Stardust Crusader',
+    title: 'Stardust',
     img: img14,
     alt: 'Stardust Crusader poster',
     href: '/movies/stardust-crusader',
@@ -86,7 +86,7 @@ export const allMovies = [
   { id: 'm18', title: 'Power Bessa', img: img18, alt: 'Power Bessa poster', href: '/movies/power-bessa', rating: 8.0 },
   {
     id: 'm19',
-    title: 'Resident WIll',
+    title: 'Resident Will',
     img: img19,
     alt: 'Resident WIll poster',
     href: '/movies/resident-will',
@@ -103,7 +103,7 @@ export const allMovies = [
   },
   {
     id: 'm22',
-    title: '007 - Golden Bessa',
+    title: '00Zessi',
     img: img22,
     alt: '007 - Golden Bessa poster',
     href: '/movies/007-golden-bessa',
