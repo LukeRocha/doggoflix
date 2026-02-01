@@ -26,7 +26,7 @@ const { category, collection } = Astro.props as Props;
   </div>
 
   <div class="relative">
-    <div class=`no-scrollbar flex snap-x snap-proximity  ${category == "Trending" ? 'gap-18': 'gap-6'} overflow-x-auto scroll-smooth` id="slider">
+    <div class=`no-scrollbar flex snap-x snap-proximity  ${category == "Trending" ? 'gap-8': 'gap-2'} overflow-x-auto scroll-smooth` id="slider">
       {
         collection.map((movie, index) => (
           <a href={movie.href} class="contents">
