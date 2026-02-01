@@ -9,7 +9,7 @@ import { Icon } from 'astro-icon/components';
 
   <div id="overlay" class="z-85 blur-sm"></div>
 
-  <div class="relative z-90 flex h-full w-full items-center justify-between px-6">
+  <div class="relative z-90 flex h-full w-full items-center justify-between px-6 md:px-12">
     <div class="flex items-center">
       <button
         class="relative flex cursor-pointer items-center rounded p-2 px-2 text-lg font-medium tracking-wide text-white transition-colors hover:bg-white hover:text-black md:hidden"
@@ -164,11 +164,11 @@ import { Icon } from 'astro-icon/components';
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    width: 99%;
+    width: 96%;
   }
 
   header nav a,
