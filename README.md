@@ -1,7 +1,8 @@
 # Doggoflix
+
 ## Live demo: https://doggoflix.netlify.app
 
-A tiny **Astro + Tailwind** “Netflix-style” portfolio starring my dog.  
+A tiny **Astro + Tailwind** “Netflix-style” portfolio starring my dog.
 
 ## Made with
 
